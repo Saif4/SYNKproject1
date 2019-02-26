@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYNKproject1", "SYNKproject1\SYNKproject1.csproj", "{31733BD8-998E-4599-8E60-FB7FC8C70E78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYNKprojekt2", "..\SYNKprojekt2\SYNKprojekt2.csproj", "{43F7CEA1-7FFF-46A7-ADFD-900B0B5BBFC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31733BD8-998E-4599-8E60-FB7FC8C70E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31733BD8-998E-4599-8E60-FB7FC8C70E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31733BD8-998E-4599-8E60-FB7FC8C70E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31733BD8-998E-4599-8E60-FB7FC8C70E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43F7CEA1-7FFF-46A7-ADFD-900B0B5BBFC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43F7CEA1-7FFF-46A7-ADFD-900B0B5BBFC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43F7CEA1-7FFF-46A7-ADFD-900B0B5BBFC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43F7CEA1-7FFF-46A7-ADFD-900B0B5BBFC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C64043B-8204-4A4B-8944-D19B7BD2A159}
+	EndGlobalSection
+EndGlobal
