@@ -23,22 +23,22 @@ namespace SYNKproject1
         }
         public void InitialSYNKlogin()
         {
-           
             StreamReader sr = new StreamReader(customer);
             string customerAccount = sr.ReadLine();
+            string customerAccount2 = sr.ReadLine();
             //Find "SYNK - Startfönster"
-            var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster");
-            var synkStartWindowHandle = synkStartWindow.GetAttribute("NativeWindowHandle");
-            synkStartWindowHandle = (int.Parse(synkStartWindowHandle)).ToString("x"); // Convert to Hex
+             var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster");
+             var synkStartWindowHandle = synkStartWindow.GetAttribute("NativeWindowHandle");
+             synkStartWindowHandle = (int.Parse(synkStartWindowHandle)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "SYNK - Startfönster" top level window
-            DesiredCapabilities synkAppCapabilities = new DesiredCapabilities();
-            synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindowHandle);
-            SynkWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);
-            SynkWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));
-
-            SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(customerAccount);
-            SynkWindowSession.FindElementByName("Aktivera").Click();
+             // Create session by attaching to "SYNK - Startfönster" top level window
+             DesiredCapabilities synkAppCapabilities = new DesiredCapabilities();
+             synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindowHandle);
+             SynkWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);
+             SynkWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));
+             
+             SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(customerAccount2);
+             SynkWindowSession.FindElementByName("Aktivera").Click();
         }
 
     }
