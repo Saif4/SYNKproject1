@@ -21,7 +21,7 @@ namespace SYNKproject1
         {
             PageFactory.InitElements(Drivers.RootSession, this);
         }
-        public void InitialSYNKlogin()
+        public void InitialSYNKlogin(string kundnummer)
         {
             StreamReader sr = new StreamReader(customer);
             string customerAccount = sr.ReadLine();
@@ -37,7 +37,7 @@ namespace SYNKproject1
              SynkWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);
              SynkWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));
              
-             SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(customerAccount2);
+             SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
              SynkWindowSession.FindElementByName("Aktivera").Click();
         }
 

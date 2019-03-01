@@ -1,29 +1,36 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class VerifyBalance : DriversRoot
+   public class CheckBalance : DriversRoot
     {
         public WindowsDriver<WindowsElement> CustomerFormWindowSession;
         public WindowsDriver<WindowsElement> VarukorgenFormWindowSession;
         public WindowsDriver<WindowsElement> kontoUtdragSession;
-        public string GetUserFromMyClass()
+
+        private static string actualsaldo;
+        public static string Actualsaldo
         {
-            return CheckBalance.Actualsaldo;
+            get { return actualsaldo; }
+            set { actualsaldo = value; }
+        }
+        private static string kontoNr;
+        public static string KontoNR
+        {
+            get { return kontoNr; }
+            set { kontoNr = value; }
         }
 
-        public VerifyBalance()
+        public CheckBalance()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
@@ -42,34 +49,25 @@ namespace SYNKproject1
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             var konto = CustomerFormWindowSession.FindElementByName("Privatkonto???????????????????????????????????");
-            
-            
             CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
-            CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
+            CustomerFormWindowSession.FindElementByName("Visa produktinfo").Click();
             CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
 
-             if (CustomerFormWindowSession.PageSource.Contains("Meddelande från Centrala Systemet"))
-             {
-                CustomerFormWindowSession.FindElementByName("No").Click();
-             }
-
-            var kontoUtdrag = RootSession.FindElementByAccessibilityId("frmKontoUtdrag").GetAttribute("NativeWindowHandle");
+            var kontoUtdrag = RootSession.FindElementByAccessibilityId("frmKonto").GetAttribute("NativeWindowHandle");
             kontoUtdrag = (int.Parse(kontoUtdrag)).ToString("X");
 
             DesiredCapabilities kontoUtdragCapabilities = new DesiredCapabilities();
             kontoUtdragCapabilities.SetCapability("appTopLevelWindow", kontoUtdrag);
             kontoUtdragSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), kontoUtdragCapabilities);
-            var Newsaldo = kontoUtdragSession.FindElementByAccessibilityId("lvwSaldo").FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-2").GetAttribute("Name");
-            Console.WriteLine(Newsaldo);
-           // CheckBalance checkBalance = new CheckBalance();
-            //string us = checkBalance.User;
-           // string actualsaldoo = checkBalance.Actualsaldo;
-            //Console.WriteLine(actualsaldoo);
-            Assert.AreNotEqual(Newsaldo, CheckBalance.Actualsaldo);
-            kontoUtdragSession.FindElementByName("Test").Click();
+            actualsaldo = kontoUtdragSession.FindElementByAccessibilityId("txtSaldo").GetAttribute("Value.Value");
+            kontoNr = kontoUtdragSession.FindElementByAccessibilityId("txtKontonr").GetAttribute("Value.Value");
+            Console.WriteLine("Nuvarande Saldo:" + actualsaldo);
+            Console.WriteLine("Kontonummer:" + kontoNr);
+            kontoUtdragSession.FindElementByName("Arkiv").Click();
+            kontoUtdragSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
+         
 
 
         }
     }
 }
-

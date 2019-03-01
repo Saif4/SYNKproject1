@@ -18,13 +18,14 @@ namespace SYNKproject1
             //navigateToSynk.InitialSYNKStartWindow();
 
             LoginToCustomer synkStartWindowLogin = new LoginToCustomer();
-            synkStartWindowLogin.InitialSYNKlogin();
+            synkStartWindowLogin.InitialSYNKlogin("195306300368");
             CheckBalance checkBalance = new CheckBalance();
             checkBalance.OpenAccountAndVerifyBalance();
-            CashDeskTransfer cashDeskTransfer = new CashDeskTransfer();
-            cashDeskTransfer.OpenCashDeskAndTransfer("19530630-0368", "500");
-            VerifyBalance verifyBalance = new VerifyBalance();
-            verifyBalance.OpenAccountAndVerifyBalance();
+            BGandPGpayment payment = new BGandPGpayment();
+            payment.BgAndPGpayment("195306300368", "100", "5175-4158");
+           // VerifyBalance verifyBalance = new VerifyBalance();
+           // verifyBalance.OpenAccountAndVerifyBalance();
+
 
 
 
@@ -39,14 +40,34 @@ namespace SYNKproject1
             [SetUp]
             public void InitialDriver()
             {
-                LoginToCustomer Login = new LoginToCustomer();
-                Login.InitialSYNKlogin();
+                LoginToCustomer synkStartWindowLogin = new LoginToCustomer();
+                synkStartWindowLogin.InitialSYNKlogin("195306300368");
             }
             [Test]
             public void CreateAcount()
             {
                 CreateAccount createAccount = new CreateAccount();
-                 createAccount.OpenAccount();
+                createAccount.OpenAccount();
+            }
+            [Test]
+            public void TransferWithinSameBankWithVerification()
+            {
+                CheckBalance checkBalance = new CheckBalance();
+                checkBalance.OpenAccountAndVerifyBalance();
+                CashDeskTransfer cashDeskTransfer = new CashDeskTransfer();
+                cashDeskTransfer.OpenCashDeskAndTransfer("19530630-0368", "500");
+                VerifyBalance verifyBalance = new VerifyBalance();
+                verifyBalance.OpenAccountAndVerifyBalance();
+            }
+            [Test]
+            public void TransferToDifferentBank()
+            {
+                CheckBalance checkBalance = new CheckBalance();
+                checkBalance.OpenAccountAndVerifyBalance();
+                CashDeskTransferDifferentBank cashDeskTransfer = new CashDeskTransferDifferentBank();
+                cashDeskTransfer.TransferToDifferentBank("195306300368", "500");
+                VerifyBalance verifyBalance = new VerifyBalance();
+                verifyBalance.OpenAccountAndVerifyBalance();
             }
             [TearDown]
             public void TearDown()

@@ -1,38 +1,30 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-   public class CheckBalance : DriversRoot
+    public class VerifyBalance : DriversRoot
     {
         public WindowsDriver<WindowsElement> CustomerFormWindowSession;
         public WindowsDriver<WindowsElement> VarukorgenFormWindowSession;
         public WindowsDriver<WindowsElement> kontoUtdragSession;
-        private static string actualsaldo;
-       // private static string user;
 
-        public static string Actualsaldo
+        public string GetSaldo()
         {
-            get { return actualsaldo; }
-            set { actualsaldo = value; }
+            return CheckBalance.Actualsaldo;
         }
 
-        //private string user = "testUser";
-
-        //properties
-      // public string Actualsaldo
-        //{ get { return this.actualsaldo; } set { this.Actualsaldo = value; } }
-        public string kontoNr;
-
-        public CheckBalance()
+        public VerifyBalance()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
@@ -51,25 +43,35 @@ namespace SYNKproject1
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             var konto = CustomerFormWindowSession.FindElementByName("Privatkonto???????????????????????????????????");
+            
+            
             CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
-            CustomerFormWindowSession.FindElementByName("Visa produktinfo").Click();
+            CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
             CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
 
-            var kontoUtdrag = RootSession.FindElementByAccessibilityId("frmKonto").GetAttribute("NativeWindowHandle");
+             if (CustomerFormWindowSession.PageSource.Contains("Meddelande från Centrala Systemet"))
+             {
+                CustomerFormWindowSession.FindElementByName("No").Click();
+             }
+
+            var kontoUtdrag = RootSession.FindElementByAccessibilityId("frmKontoUtdrag").GetAttribute("NativeWindowHandle");
             kontoUtdrag = (int.Parse(kontoUtdrag)).ToString("X");
 
             DesiredCapabilities kontoUtdragCapabilities = new DesiredCapabilities();
             kontoUtdragCapabilities.SetCapability("appTopLevelWindow", kontoUtdrag);
             kontoUtdragSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), kontoUtdragCapabilities);
-            actualsaldo = kontoUtdragSession.FindElementByAccessibilityId("txtSaldo").GetAttribute("Value.Value");
-            kontoNr = kontoUtdragSession.FindElementByAccessibilityId("txtKontonr").GetAttribute("Value.Value");
-            Console.WriteLine(actualsaldo);
-            Console.WriteLine(kontoNr);
-            kontoUtdragSession.FindElementByName("Arkiv").Click();
-            kontoUtdragSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
-         
+            var Newsaldo = kontoUtdragSession.FindElementByAccessibilityId("lvwSaldo").FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-2").GetAttribute("Name");
+            Console.WriteLine("Nya Saldo:" + Newsaldo);
+            Thread.Sleep(1000);
+           // CheckBalance checkBalance = new CheckBalance();
+            //string us = checkBalance.User;
+           // string actualsaldoo = checkBalance.Actualsaldo;
+            //Console.WriteLine(actualsaldoo);
+            Assert.AreNotEqual(CheckBalance.Actualsaldo, Newsaldo);
+          
 
 
         }
     }
 }
+

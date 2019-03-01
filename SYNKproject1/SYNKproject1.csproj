@@ -114,6 +114,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestCases\BGandPGpayment.cs" />
+    <Compile Include="TestCases\CashDeskTransferDifferentBank.cs" />
     <Compile Include="TestCases\CashDeskWithdrawAboveLimit.cs" />
     <Compile Include="TestCases\CashDeskDepositAboveLimit.cs" />
     <Compile Include="TestCases\CashDeskTransferCustomerIdentification.cs" />
@@ -132,8 +134,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\LoginToCustomer.cs" />
     <Compile Include="TestClass.cs" />
-    <Compile Include="VerifyBalance.cs" />
-    <Compile Include="CheckBalance.cs" />
+    <Compile Include="TestCases\VerifyBalance.cs" />
+    <Compile Include="TestCases\CheckBalance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
