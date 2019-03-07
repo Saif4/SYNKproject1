@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class BGandPGpayment : DriversRoot
+    public class OpenCashDesk : DriversRoot
     {
         public WindowsDriver<WindowsElement> CashDeskWindowSession;
         public WindowsDriver<WindowsElement> SynkWindowSession;
@@ -21,12 +21,12 @@ namespace SYNKproject1
         {
             return CheckBalance.KontoNR;
         }
-        public BGandPGpayment()
+        public OpenCashDesk()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
 
-        public void BgAndPGpayment(string kundnummer, string belopp, string mottagare, string ocr)
+        public void CashDesk()
         {
             NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
             navigate.InitialSYNKStartWindow();
@@ -65,42 +65,8 @@ namespace SYNKproject1
             string verifycashdeskIsOpen = "Kassa: ";
             Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);
             Thread.Sleep(1000);
-            CashDeskWindowSession.FindElementByAccessibilityId("FBSTCustomernumber").SendKeys(kundnummer);
-            Thread.Sleep(1000);
-
-            CashDeskWindowSession.FindElementByAccessibilityId("txtAction").Clear();
-            CashDeskWindowSession.FindElementByAccessibilityId("txtAction").SendKeys("31+");
-            CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);
-            CashDeskWindowSession.FindElementByAccessibilityId("FBSTAccountnumber").SendKeys(CheckBalance.KontoNR);
-            CashDeskWindowSession.FindElementByAccessibilityId("FBSTPGBG").Click();
-            CashDeskWindowSession.FindElementByAccessibilityId("FBSTPGBG").SendKeys(mottagare);
-            CashDeskWindowSession.FindElementByAccessibilityId("txtPGBGMessage").Click();
-            CashDeskWindowSession.FindElementByAccessibilityId("txtPGBGMessage").SendKeys(ocr);
-            CashDeskWindowSession.FindElementByAccessibilityId("FBSCustomerId").SendKeys(kundnummer);
-            CashDeskWindowSession.FindElementByAccessibilityId("cmdGetCustomerInfo").Click();
-            CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys(belopp);
-            CashDeskWindowSession.FindElementByAccessibilityId("cmdAddPayment").Click();
-            CashDeskWindowSession.FindElementByAccessibilityId("cmdAccept").Click();
-
-            CashDeskWindowSession.FindElementByName("UT");
-            CashDeskWindowSession.FindElementByName("IN");
-            CashDeskWindowSession.FindElementByName("UT");
-            CashDeskWindowSession.FindElementByName("IN");
-            CashDeskWindowSession.FindElementByName("Arkiv").Click();
-            CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
-            CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);
-            CashDeskWindowSession.FindElementByName("OK").Click();
-
-            var Kundavslut = CashDeskWindowSession.FindElementByName("**** Kundavslut ****").Displayed;
-            CashDeskWindowSession.FindElementByName("Kassaadministration").Click();
-            CashDeskWindowSession.Keyboard.SendKeys(Keys.Down + Keys.Right);
-            CashDeskWindowSession.FindElementByName("Kassaadministration").SendKeys("S");
-            CashDeskWindowSession.FindElementByName("Verkställ").Click();
-            CashDeskWindowSession.FindElementByName("Verkställ").Click();
-
-            CashDeskWindowSession.FindElementByName("Arkiv").Click();
-            CashDeskWindowSession.FindElementByName("Arkiv").SendKeys("A");
-
+           // CashDeskWindowSession.FindElementByAccessibilityId("FBSTCustomernumber").SendKeys(kundnummer);
+            //Thread.Sleep(1000);
         }
     }
 }

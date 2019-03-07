@@ -112,8 +112,22 @@ namespace SYNKproject1
 
             CashDeskWindowSession.FindElementByName("Arkiv").Click();
             CashDeskWindowSession.FindElementByName("Arkiv").SendKeys("A");
-
-
+            // WAIT METODEN
+           /* var progressBar = mainWindow.FindElementByClassName("Window").FindElementByAccessibilityId("progressor");
+            WebDriverWait waitProgressBar = new WebDriverWait(_session, new TimeSpan(0, 0, 15));
+            waitProgressBar.PollingInterval = new TimeSpan(0, 0, 0, 0, 50);
+            waitProgressBar.Until(driver =>
+            {
+                try
+                {
+                    progressBar.GetScreenshot();
+                    return false;
+                }
+                catch (Exception)
+                { }
+                return true;
+            }
+            */
 
 
 

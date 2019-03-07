@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class BGandPGpayment : DriversRoot
+   public class ChangePayment : DriversRoot
     {
         public WindowsDriver<WindowsElement> CashDeskWindowSession;
         public WindowsDriver<WindowsElement> SynkWindowSession;
@@ -21,7 +21,7 @@ namespace SYNKproject1
         {
             return CheckBalance.KontoNR;
         }
-        public BGandPGpayment()
+        public ChangePayment()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
@@ -79,6 +79,12 @@ namespace SYNKproject1
             CashDeskWindowSession.FindElementByAccessibilityId("FBSCustomerId").SendKeys(kundnummer);
             CashDeskWindowSession.FindElementByAccessibilityId("cmdGetCustomerInfo").Click();
             CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys(belopp);
+            CashDeskWindowSession.FindElementByAccessibilityId("cmdAddPayment").Click();
+
+            CashDeskWindowSession.FindElementByName("I kö").Click();
+            CashDeskWindowSession.FindElementByAccessibilityId("cmdChange").Click();
+            CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").Clear();
+            CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys("200");
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAddPayment").Click();
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAccept").Click();
 

@@ -30,10 +30,8 @@ namespace SYNKproject1
         }
         public void OpenAccountAndVerifyBalance()
         {
-
-
             // Find "Customer View"
-            var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView");
+            /*var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView");
             var customerFormWindowHandle = customerFormWindow.GetAttribute("NativeWindowHandle");
             customerFormWindowHandle = (int.Parse(customerFormWindowHandle)).ToString("x"); // Convert to Hex
 
@@ -41,26 +39,24 @@ namespace SYNKproject1
             DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindowHandle);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
-            CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            var konto = CustomerFormWindowSession.FindElementByName("Privatkonto???????????????????????????????????");
-            
-            
-            CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
-            CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
-            CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
+            CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));*/
+            var konto = RootSession.FindElementByName("Privatkonto???????????????????????????????????");
+            RootSession.Mouse.ContextClick(konto.Coordinates);
+            RootSession.Mouse.ContextClick(konto.Coordinates);
+            RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
 
-             if (CustomerFormWindowSession.PageSource.Contains("Meddelande från Centrala Systemet"))
+             if (RootSession.PageSource.Contains("Meddelande från Centrala Systemet"))
              {
-                CustomerFormWindowSession.FindElementByName("No").Click();
+                RootSession.FindElementByName("No").Click();
              }
 
-            var kontoUtdrag = RootSession.FindElementByAccessibilityId("frmKontoUtdrag").GetAttribute("NativeWindowHandle");
+           /* var kontoUtdrag = RootSession.FindElementByAccessibilityId("frmKontoUtdrag").GetAttribute("NativeWindowHandle");
             kontoUtdrag = (int.Parse(kontoUtdrag)).ToString("X");
 
             DesiredCapabilities kontoUtdragCapabilities = new DesiredCapabilities();
             kontoUtdragCapabilities.SetCapability("appTopLevelWindow", kontoUtdrag);
-            kontoUtdragSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), kontoUtdragCapabilities);
-            var Newsaldo = kontoUtdragSession.FindElementByAccessibilityId("lvwSaldo").FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-2").GetAttribute("Name");
+            kontoUtdragSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), kontoUtdragCapabilities);*/
+            var Newsaldo = RootSession.FindElementByAccessibilityId("lvwSaldo").FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-2").GetAttribute("Name");
             Console.WriteLine("Nya Saldo:" + Newsaldo);
             Thread.Sleep(1000);
            // CheckBalance checkBalance = new CheckBalance();

@@ -114,6 +114,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestCases\BuyFund.cs" />
+    <Compile Include="OpenCashDesk.cs" />
+    <Compile Include="TestCases\ChangePayment.cs" />
+    <Compile Include="TestCases\PaymentVerifications.cs" />
     <Compile Include="TestCases\BGandPGpayment.cs" />
     <Compile Include="TestCases\CashDeskTransferDifferentBank.cs" />
     <Compile Include="TestCases\CashDeskWithdrawAboveLimit.cs" />

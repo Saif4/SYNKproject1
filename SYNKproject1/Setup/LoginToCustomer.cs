@@ -27,18 +27,19 @@ namespace SYNKproject1
             string customerAccount = sr.ReadLine();
             string customerAccount2 = sr.ReadLine();
             //Find "SYNK - Startfönster"
-             var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster");
-             var synkStartWindowHandle = synkStartWindow.GetAttribute("NativeWindowHandle");
-             synkStartWindowHandle = (int.Parse(synkStartWindowHandle)).ToString("x"); // Convert to Hex
+           /* var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster").GetAttribute("NativeWindowHandle");//Saljstöd
+             synkStartWindow = (int.Parse(synkStartWindow)).ToString("x"); // Convert to Hex
 
              // Create session by attaching to "SYNK - Startfönster" top level window
              DesiredCapabilities synkAppCapabilities = new DesiredCapabilities();
-             synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindowHandle);
+             synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindow);
              SynkWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);
              SynkWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));
              
              SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
-             SynkWindowSession.FindElementByName("Aktivera").Click();
+             SynkWindowSession.FindElementByName("Aktivera").Click();*/
+             RootSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
+             RootSession.FindElementByName("Aktivera").Click(); 
         }
 
     }

@@ -17,14 +17,16 @@ namespace SYNKproject1
             //NavigateToSynkStartWindow navigateToSynk = new NavigateToSynkStartWindow();
             //navigateToSynk.InitialSYNKStartWindow();
 
-            LoginToCustomer synkStartWindowLogin = new LoginToCustomer();
-            synkStartWindowLogin.InitialSYNKlogin("195306300368");
-            CheckBalance checkBalance = new CheckBalance();
-            checkBalance.OpenAccountAndVerifyBalance();
-            BGandPGpayment payment = new BGandPGpayment();
-            payment.BgAndPGpayment("195306300368", "100", "5175-4158");
-           // VerifyBalance verifyBalance = new VerifyBalance();
-           // verifyBalance.OpenAccountAndVerifyBalance();
+           LoginToCustomer synkStartWindowLogin = new LoginToCustomer();
+           synkStartWindowLogin.InitialSYNKlogin("195306300368");
+            BuyFund buyFund = new BuyFund();
+            buyFund.Buyfund();
+          // CheckBalance checkBalance = new CheckBalance();
+         //  checkBalance.OpenAccountAndVerifyBalance();
+          // ChangePayment payment = new ChangePayment();
+          // payment.BgAndPGpayment("195306300368", "100", "5175-4158","7904130361");
+          // VerifyBalance verifyBalance = new VerifyBalance();
+           //verifyBalance.OpenAccountAndVerifyBalance();
 
 
 
@@ -44,6 +46,7 @@ namespace SYNKproject1
                 synkStartWindowLogin.InitialSYNKlogin("195306300368");
             }
             [Test]
+            [Order(1)]
             public void CreateAcount()
             {
                 CreateAccount createAccount = new CreateAccount();
@@ -68,6 +71,42 @@ namespace SYNKproject1
                 cashDeskTransfer.TransferToDifferentBank("195306300368", "500");
                 VerifyBalance verifyBalance = new VerifyBalance();
                 verifyBalance.OpenAccountAndVerifyBalance();
+            }
+            [Test]
+            public void BgPayment()
+            {
+                CheckBalance checkBalance = new CheckBalance();
+                checkBalance.OpenAccountAndVerifyBalance();
+                BGandPGpayment payment = new BGandPGpayment();
+                payment.BgAndPGpayment("195306300368", "100", "5175-4158", "7904130361");
+                VerifyBalance verifyBalance = new VerifyBalance();
+                verifyBalance.OpenAccountAndVerifyBalance();
+            }
+            [Test]
+            public void PaymentVerifications()
+            {
+                LoginToCustomer synkStartWindowLogin = new LoginToCustomer();
+                synkStartWindowLogin.InitialSYNKlogin("195306300368");
+                CheckBalance checkBalance = new CheckBalance();
+                checkBalance.OpenAccountAndVerifyBalance();
+                PaymentVerifications payment = new PaymentVerifications();
+                payment.BgAndPGpayment("195306300368", "100", "5175-4158", "5175-4159", "7904130361", "1234567890", "12345678912345679");
+            }
+            [Test]
+            public void ChangePayment()
+            {
+                LoginToCustomer synkStartWindowLogin = new LoginToCustomer();
+                synkStartWindowLogin.InitialSYNKlogin("195306300368");
+                CheckBalance checkBalance = new CheckBalance();
+                checkBalance.OpenAccountAndVerifyBalance();
+                ChangePayment payment = new ChangePayment();
+                payment.BgAndPGpayment("195306300368", "100", "5175-4158", "7904130361");
+            }
+            [Test]
+            public void BuyFund()
+            {
+                BuyFund buyFund = new BuyFund();
+                buyFund.Buyfund();
             }
             [TearDown]
             public void TearDown()
