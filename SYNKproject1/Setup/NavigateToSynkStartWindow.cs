@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class NavigateToSynkStartWindow : Drivers
+    public class NavigateToSynkStartWindow : DriversRoot
     {
 
 
@@ -18,7 +18,7 @@ namespace SYNKproject1
 
         public NavigateToSynkStartWindow()
         {
-            PageFactory.InitElements(Drivers.RootSession, this);
+            PageFactory.InitElements(DriversRoot.RootSession, this);
         }
         public void InitialSYNKStartWindow()
         {

@@ -48,10 +48,11 @@ namespace SYNKproject1
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdFondTorget").Click();
 
-           /* WindowsElement text = CustomerFormWindowSession.FindElementByXPath("//*[contains(@LocalizedControlType,'text')]");
-            CustomerFormWindowSession.Mouse.MouseMove(text.Coordinates);
-            CustomerFormWindowSession.Mouse.Click(null);
-            //CustomerFormWindowSession.FindElementByTagName("text").Click();*/
+            /* WindowsElement text = CustomerFormWindowSession.FindElementByXPath("//*[contains(@LocalizedControlType,'text')]");
+             CustomerFormWindowSession.Mouse.MouseMove(text.Coordinates);
+             CustomerFormWindowSession.Mouse.Click(null);
+             //CustomerFormWindowSession.FindElementByTagName("text").Click();*/
+            //Hitta en fond
             CustomerFormWindowSession.FindElementByXPath("//*[contains(@LocalizedControlType,'check box')]").Click();
             CustomerFormWindowSession.FindElementByName("OK").Click();
 
@@ -65,27 +66,27 @@ namespace SYNKproject1
            
             WebDriverWait wait = new WebDriverWait(CustomerFormWindowSession, new TimeSpan(0, 0, 10));
             wait.PollingInterval = new TimeSpan(0, 0, 0, 0, 50);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Name("Fondtorget - Har du handlat färdigt?")));                                           //driver =>
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Name("Fondtorget - Har du handlat färdigt?")));                                         
               {
                 try
                 {
+                    //väntar på OK knappen 
                     CustomerFormWindowSession.FindElementByName("OK").Click();
-                    //return false;
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("not found");
                 }
-                  //  return true;
+                 
                 
                }
 
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("frmFaktablad").FindElementByAccessibilityId("cmdClose").Click();
             RootSession.FindElementByAccessibilityId("frmVarukorgen").FindElementByAccessibilityId("cmdAccept").Click();
-            RootSession.FindElementByName("Ta bort").Click();//tillfälligt
-           // RootSession.FindElementByAccessibilityId("_optEsign_1").Click();
-           // RootSession.FindElementByAccessibilityId("cmdOk").Click();
+           
+            RootSession.FindElementByAccessibilityId("_optEsign_1").Click();
+            RootSession.FindElementByAccessibilityId("cmdOk").Click();
             
             
         }

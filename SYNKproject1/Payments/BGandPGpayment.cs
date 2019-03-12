@@ -12,29 +12,32 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class CashDeskDeposit : DriversRoot
+    public class BGandPGpayment : OpenCashDesk
     {
-        public WindowsDriver<WindowsElement> CashDeskWindowSession;
-        public WindowsDriver<WindowsElement> SynkWindowSession;
+       // public WindowsDriver<WindowsElement> CashDeskWindowSession;
+       // public WindowsDriver<WindowsElement> SynkWindowSession;
 
-        public CashDeskDeposit()
+        public new string GetAccountNr()
         {
-            PageFactory.InitElements(DriversRoot.RootSession, this);
+            return CheckBalance.KontoNR;
+        }
+        public BGandPGpayment()
+        {
+            PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);
         }
 
-        public void Deposit(string kundnummer, string belopp)
+        public void BgAndPGpayment(string kundnummer, string belopp, string mottagare, string ocr)
         {
-            NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
+           /* NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
             navigate.InitialSYNKStartWindow();
             navigate.SynkWindowSession.Keyboard.SendKeys(Keys.F2);
 
-            var CashDeskWindow = RootSession.FindElementByAccessibilityId("FrmTransaction");
-            var CashDeskWindowHandle = CashDeskWindow.GetAttribute("NativeWindowHandle");
-            CashDeskWindowHandle = (int.Parse(CashDeskWindowHandle)).ToString("x"); // Convert to Hex
+            var CashDeskWindow = RootSession.FindElementByAccessibilityId("FrmTransaction").GetAttribute("NativeWindowHandle");
+            CashDeskWindow = (int.Parse(CashDeskWindow)).ToString("x"); // Convert to Hex
 
             // Create session by attaching to "Customer View" top level window
             DesiredCapabilities CashDeskAppCapabilities = new DesiredCapabilities();
-            CashDeskAppCapabilities.SetCapability("appTopLevelWindow", CashDeskWindowHandle);
+            CashDeskAppCapabilities.SetCapability("appTopLevelWindow", CashDeskWindow);
             CashDeskWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), CashDeskAppCapabilities);
             CashDeskWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
 
@@ -60,37 +63,36 @@ namespace SYNKproject1
             var NotEmptydeskNR = CashDeskWindowSession.FindElementByName("Kassa: " + Desknr).GetAttribute("Name");
             Console.WriteLine(NotEmptydeskNR);
             string verifycashdeskIsOpen = "Kassa: ";
-            Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);
+            Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);*/
             Thread.Sleep(1000);
             CashDeskWindowSession.FindElementByAccessibilityId("FBSTCustomernumber").SendKeys(kundnummer);
             Thread.Sleep(1000);
 
-            CashDeskWindowSession.FindElementByName("Transaktioner").Click();
-            CashDeskWindowSession.FindElementByName("Transaktioner").SendKeys("I");
+            CashDeskWindowSession.FindElementByAccessibilityId("txtAction").Clear();
+            CashDeskWindowSession.FindElementByAccessibilityId("txtAction").SendKeys("31+");
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);
-            CashDeskWindowSession.FindElementByAccessibilityId("cmdAccountnumber").Click();
-            CashDeskWindowSession.FindElementByName("Privatkonto").Click();
-            CashDeskWindowSession.FindElementByName("OK").Click();
+            CashDeskWindowSession.FindElementByAccessibilityId("FBSTAccountnumber").SendKeys(CheckBalance.KontoNR);
+            CashDeskWindowSession.FindElementByAccessibilityId("FBSTPGBG").Click();
+            CashDeskWindowSession.FindElementByAccessibilityId("FBSTPGBG").SendKeys(mottagare);
+            CashDeskWindowSession.FindElementByAccessibilityId("txtPGBGMessage").Click();
+            CashDeskWindowSession.FindElementByAccessibilityId("txtPGBGMessage").SendKeys(ocr);
+            CashDeskWindowSession.FindElementByAccessibilityId("FBSCustomerId").SendKeys(kundnummer);
+            CashDeskWindowSession.FindElementByAccessibilityId("cmdGetCustomerInfo").Click();
             CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys(belopp);
+            CashDeskWindowSession.FindElementByAccessibilityId("cmdAddPayment").Click();
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAccept").Click();
 
-            var In = CashDeskWindowSession.FindElementByName("IN").Displayed;
-
+            CashDeskWindowSession.FindElementByName("UT");
+            CashDeskWindowSession.FindElementByName("IN");
+            CashDeskWindowSession.FindElementByName("UT");
+            CashDeskWindowSession.FindElementByName("IN");
             CashDeskWindowSession.FindElementByName("Arkiv").Click();
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);
             CashDeskWindowSession.FindElementByName("OK").Click();
 
             var Kundavslut = CashDeskWindowSession.FindElementByName("**** Kundavslut ****").Displayed;
-
-            CashDeskWindowSession.FindElementByName("Kassaadministration").Click();
-            CashDeskWindowSession.Keyboard.SendKeys(Keys.Down + Keys.Right);
-            CashDeskWindowSession.FindElementByName("Kassaadministration").SendKeys("S");
-            CashDeskWindowSession.FindElementByName("Verkställ").Click();
-            CashDeskWindowSession.FindElementByName("Verkställ").Click();
-
-            CashDeskWindowSession.FindElementByName("Arkiv").Click();
-            CashDeskWindowSession.FindElementByName("Arkiv").SendKeys("A");
+           
 
         }
     }

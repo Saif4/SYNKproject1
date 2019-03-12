@@ -14,7 +14,7 @@ namespace SYNKproject1
 {
     public class OpenCashDesk : DriversRoot
     {
-        public WindowsDriver<WindowsElement> CashDeskWindowSession;
+        public static WindowsDriver<WindowsElement> CashDeskWindowSession;
         public WindowsDriver<WindowsElement> SynkWindowSession;
 
         public string GetAccountNr()
@@ -64,9 +64,8 @@ namespace SYNKproject1
             Console.WriteLine(NotEmptydeskNR);
             string verifycashdeskIsOpen = "Kassa: ";
             Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);
-            Thread.Sleep(1000);
-           // CashDeskWindowSession.FindElementByAccessibilityId("FBSTCustomernumber").SendKeys(kundnummer);
-            //Thread.Sleep(1000);
+            
+           
         }
     }
 }

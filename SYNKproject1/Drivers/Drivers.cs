@@ -1,12 +1,8 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
@@ -21,8 +17,63 @@ namespace SYNKproject1
 
 
 
-        public Drivers()
+        public void Driver()
         {
+
+            DesiredCapabilities RootCapabilities = new DesiredCapabilities();
+            RootCapabilities.SetCapability("app", "Root");
+            RootCapabilities.SetCapability("deviceName", "WindowsPC");
+            RootSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), RootCapabilities);
+            RootSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0.5));
+
+            RootSession.FindElementByName("Notification Chevron").Click();
+           
+
+            try
+            {
+              
+                WindowsElement AMWNotloggedIn = RootSession.FindElementByName("Påloggning på Centrala Systemet - Ej påloggad");
+                RootSession.Mouse.MouseMove(AMWNotloggedIn.Coordinates);
+                RootSession.Mouse.DoubleClick(null);
+                RootSession.FindElementByName("Påloggning på Centrala Systemet");
+                RootSession.FindElementByAccessibilityId("304").Clear();
+                RootSession.FindElementByAccessibilityId("304").SendKeys("P417JI6");
+                RootSession.FindElementByAccessibilityId("305").SendKeys("evry123");
+                RootSession.FindElementByName("Logga på").Click();
+            }
+            catch (Exception)
+            {
+
+            }
+           /* try
+            {
+                WindowsElement AMWLoggedIN = RootSession.FindElementByName("Anv.ID:P417JI6, Profil:AMW1, Målsystem:KVALAnv.ID:P417JI6, Profil:AMW1, Målsystem:KVAL");
+                RootSession.Mouse.MouseMove(AMWLoggedIN.Coordinates);
+                RootSession.Mouse.DoubleClick(null);
+            }
+            catch (Exception)
+            {
+
+            }
+           
+            try
+            {
+                if (RootSession.FindElementByName("Ej påloggad").Displayed);
+
+                {
+                    RootSession.FindElementByName("Påloggning på Centrala Systemet");
+                    RootSession.FindElementByAccessibilityId("304").Clear();
+                    RootSession.FindElementByAccessibilityId("304").SendKeys("P417JI6");
+                    RootSession.FindElementByAccessibilityId("305").SendKeys("evry123");
+                    RootSession.FindElementByName("Logga på").Click();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            */
+
             if (SYNKSession == null)
             {
                 DesiredCapabilities SYNKCapabilities = new DesiredCapabilities();
@@ -33,36 +84,6 @@ namespace SYNKproject1
                 SYNKSession.FindElementByName("32701010").Click();
                 SYNKSession.FindElementByName("OK").Click();
 
-                DesiredCapabilities RootCapabilities = new DesiredCapabilities();
-                RootCapabilities.SetCapability("app", "Root");
-                RootCapabilities.SetCapability("deviceName", "WindowsPC");
-                RootSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), RootCapabilities);
-                RootSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-                /*RootSession.FindElementByName("Påloggning På Central Systemet");
-                
-                                bool IsElementPresent(By by)
-                                {
-                                    try
-                                    {
-                                        RootSession.FindElementByName("Påloggning På Central Systemet");
-                                        return true;
-                                    }
-                                    catch (NoSuchElementException)
-                                    {
-                                        return false;
-                                    }
-                                }
-                                if (IsElementPresent(By.Id("Påloggning På Central Systemet")))
-                                {
-
-
-                                    //do if exists
-                                }
-                            }
-                            else
-                            {
-                                   //do if does { not exists}
-                            }*/
             }
         }
     }

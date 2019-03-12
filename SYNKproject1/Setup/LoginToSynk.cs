@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 namespace SYNKproject1
 {
     //Customer selection
-    public class LoginToCustomer : Drivers
+    public class LoginToSynk : DriversRoot
     {
         
         public const string customer = "ÅkeMorrisplains.txt";
         public WindowsDriver<WindowsElement> SynkWindowSession;
 
-        public LoginToCustomer()
+        public LoginToSynk()
         {
-            PageFactory.InitElements(Drivers.RootSession, this);
+            PageFactory.InitElements(DriversRoot.RootSession, this);
         }
-        public void InitialSYNKlogin(string kundnummer)
+        public void Synklogin(string kundnummer)
         {
             StreamReader sr = new StreamReader(customer);
             string customerAccount = sr.ReadLine();
