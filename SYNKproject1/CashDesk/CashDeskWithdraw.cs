@@ -14,9 +14,7 @@ namespace SYNKproject1
 {
    public class CashDeskWithdraw : OpenCashDesk
     {
-        //public WindowsDriver<WindowsElement> CashDeskWindowSession;
-       // public WindowsDriver<WindowsElement> SynkWindowSession;
-
+       
         public CashDeskWithdraw()
         {
            PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);

@@ -17,7 +17,7 @@ namespace SYNKproject1
                 RootSession.FindElementByAccessibilityId("304").SendKeys("P417JI6");
                 RootSession.FindElementByAccessibilityId("305").SendKeys("evry123");
                 RootSession.FindElementByName("Logga på").Click();
-                //return false;
+                
             }
             catch (Exception)
             {

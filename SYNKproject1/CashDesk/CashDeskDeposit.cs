@@ -14,8 +14,6 @@ namespace SYNKproject1
 {
     public class CashDeskDeposit : OpenCashDesk
     {
-        //public new WindowsDriver<WindowsElement> CashDeskWindowSession;
-       // public new WindowsDriver<WindowsElement> SynkWindowSession;
 
         public CashDeskDeposit()
         {

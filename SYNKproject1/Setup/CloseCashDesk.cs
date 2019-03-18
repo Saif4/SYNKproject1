@@ -17,6 +17,7 @@ namespace SYNKproject1
 
         public void ClosecashDesk()
         {
+            // Stänger kassan.
             CashDeskWindowSession.FindElementByName("Kassaadministration").Click();
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Down + Keys.Right);
             CashDeskWindowSession.FindElementByName("Kassaadministration").SendKeys("S");

@@ -15,9 +15,7 @@ namespace SYNKproject1
 {
     public class CashDeskTransfer : OpenCashDesk
     {
-      //  public WindowsDriver<WindowsElement> CashDeskWindowSession;
-     //   public WindowsDriver<WindowsElement> SynkWindowSession;
-
+      
         public CashDeskTransfer()
         {
             PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);
@@ -72,25 +70,7 @@ namespace SYNKproject1
 
 
 
-/*
-            TimeSpan ts = TimeSpan.FromTicks(3000);
-            WebDriverWait wait = new WebDriverWait(CashDeskWindowSession, ts);
-            IWebElement element = wait.Until(ExpectedConditions.ElementToBeClickable(By.Name("Arkiv")));
-            element.Click();
-            CashDeskWindowSession.FindElementByName("Arkiv").SendKeys("A");
 
-            /*Thread.Sleep(3000);
-            WebDriverWait wait1 = new WebDriverWait(CashDeskWindowSession, ts);
-            IWebElement element1 = wait1.Until(ExpectedConditions.ElementToBeClickable(By.Name("Avsluta")));
-            element.Click();
-            CashDeskWindowSession.FindElementByName("Avsluta").Click();
-
-            CashDeskWindowSession.Keyboard.SendKeys(Keys.Down);
-            //Keys.Down, Keys.Down, Keys.Down, Keys.Down, Keys.Down, Keys.Down, Keys.Down, Keys.Down, Keys.Down
-           // SynkWindowSession.FindElementByName("Avsluta").Click();
-           
-
-            */
 
         
     

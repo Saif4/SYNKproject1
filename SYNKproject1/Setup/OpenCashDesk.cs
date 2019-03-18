@@ -35,7 +35,7 @@ namespace SYNKproject1
             var CashDeskWindow = RootSession.FindElementByAccessibilityId("FrmTransaction").GetAttribute("NativeWindowHandle");
             CashDeskWindow = (int.Parse(CashDeskWindow)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "Customer View" top level window
+            // Skapar en session som länkas till kassa fönstret.
             DesiredCapabilities CashDeskAppCapabilities = new DesiredCapabilities();
             CashDeskAppCapabilities.SetCapability("appTopLevelWindow", CashDeskWindow);
             CashDeskWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), CashDeskAppCapabilities);
@@ -46,7 +46,8 @@ namespace SYNKproject1
             Console.WriteLine(EmptydeskNR);
             string verifycashdeskIsClosed = "Kassa: ";
             Assert.AreEqual(verifycashdeskIsClosed, EmptydeskNR);
-
+            
+            // Öpnnar kassan.
             CashDeskWindowSession.FindElementByName("Kassaadministration").Click();
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Down + Keys.Right);
             CashDeskWindowSession.FindElementByName("Kassaadministration").SendKeys("Ö");
@@ -56,14 +57,13 @@ namespace SYNKproject1
             Thread.Sleep(3000);
             var Desknr = CashDeskWindowSession.FindElementByName("Kassa/buntnr:").GetAttribute("Value.Value");
 
-            Console.WriteLine(Desknr);
-
             CashDeskWindowSession.FindElementByName("Verkställ").Click();
             Thread.Sleep(3000);
             var NotEmptydeskNR = CashDeskWindowSession.FindElementByName("Kassa: " + Desknr).GetAttribute("Name");
-            Console.WriteLine(NotEmptydeskNR);
+           
             string verifycashdeskIsOpen = "Kassa: ";
             Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);
+            // Verifierar att kassan är öppet.
             
            
         }

@@ -19,7 +19,7 @@ namespace SYNKproject1
 
         public void Driver()
         {
-
+            // En desktop session skapas
             DesiredCapabilities RootCapabilities = new DesiredCapabilities();
             RootCapabilities.SetCapability("app", "Root");
             RootCapabilities.SetCapability("deviceName", "WindowsPC");
@@ -27,11 +27,9 @@ namespace SYNKproject1
             RootSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0.5));
 
             RootSession.FindElementByName("Notification Chevron").Click();
-           
-
             try
             {
-              
+                // En verifiering ifall man är inloggad i Centrala Systemtet eller inte.
                 WindowsElement AMWNotloggedIn = RootSession.FindElementByName("Påloggning på Centrala Systemet - Ej påloggad");
                 RootSession.Mouse.MouseMove(AMWNotloggedIn.Coordinates);
                 RootSession.Mouse.DoubleClick(null);
@@ -43,7 +41,7 @@ namespace SYNKproject1
             }
             catch (Exception)
             {
-
+                // Om man är inloggad i Centrala systemet så kommer koden ovanpå inte att köras.
             }
            /* try
             {
@@ -76,12 +74,14 @@ namespace SYNKproject1
 
             if (SYNKSession == null)
             {
+                // Synk startas
                 DesiredCapabilities SYNKCapabilities = new DesiredCapabilities();
                 SYNKCapabilities.SetCapability("app", SYNKAppId);
                 SYNKCapabilities.SetCapability("deviceName", "WindowsPC");
                 SYNKSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), SYNKCapabilities);
                 SYNKSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-                SYNKSession.FindElementByName("32701010").Click();
+                var ValAvRedovisningsstället = SYNKSession.FindElementByName("32701010");
+                ValAvRedovisningsstället.Click();
                 SYNKSession.FindElementByName("OK").Click();
 
             }

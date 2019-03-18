@@ -16,6 +16,7 @@ namespace SYNKproject1
         
          public DriversRoot()
         {
+            // Skapar en desktop session som anropas när det behövs. 
             DesiredCapabilities RootCapabilities = new DesiredCapabilities();
             RootCapabilities.SetCapability("app", "Root");
             RootCapabilities.SetCapability("deviceName", "WindowsPC");

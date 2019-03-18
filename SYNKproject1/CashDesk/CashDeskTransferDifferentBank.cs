@@ -14,14 +14,12 @@ namespace SYNKproject1
 {
     public class CashDeskTransferDifferentBank : OpenCashDesk
     {
-       // public WindowsDriver<WindowsElement> CashDeskWindowSession;
-      //  public WindowsDriver<WindowsElement> SynkWindowSession;
-
+    
         public CashDeskTransferDifferentBank()
         {
             PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);
         }
-        public void TransferToDifferentBank(string kundnummer, string belopp)
+        public void TransferToDifferentBank(string kundnummer, string kontonummer, string belopp)
         {
            
             Thread.Sleep(1000);
@@ -34,7 +32,7 @@ namespace SYNKproject1
             Thread.Sleep(2000);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Tab);
-            CashDeskWindowSession.Keyboard.SendKeys("14 9020 274 717-6");
+            CashDeskWindowSession.Keyboard.SendKeys(kontonummer);
             CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys(belopp);
             var fee = CashDeskWindowSession.FindElementByAccessibilityId("FBSMFee").GetAttribute("Value.Value");
             Console.WriteLine("Avgift: " + fee);

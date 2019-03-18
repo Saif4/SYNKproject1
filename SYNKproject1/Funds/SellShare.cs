@@ -1,29 +1,27 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class SellFund : DriversRoot
+    public class SellShare : DriversRoot
     {
         public WindowsDriver<WindowsElement> CustomerFormWindowSession;
         public WindowsDriver<WindowsElement> VarukorgenFormWindowSession;
+        private static WindowsElement comboBoxElement = null;
 
-        public SellFund()
+        public SellShare()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
 
-        public void Sellfund(string belopp, string konto)
+        public void Sellshare(string värderpappersförsvar, string värdepapper, string antal)
         {
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
             customerFormWindow = (int.Parse(customerFormWindow)).ToString("x"); // Convert to Hex
@@ -35,46 +33,25 @@ namespace SYNKproject1
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             CustomerFormWindowSession.FindElementByName("Affärer").Click();
 
-            WindowsElement fund = CustomerFormWindowSession.FindElementByName("Fonder");
+            WindowsElement fund = CustomerFormWindowSession.FindElementByName("Värdepapper");
             CustomerFormWindowSession.Mouse.MouseMove(fund.Coordinates);
             CustomerFormWindowSession.Mouse.Click(null);
-            WindowsElement buy = CustomerFormWindowSession.FindElementByName("Sälj...");
-            CustomerFormWindowSession.Mouse.MouseMove(buy.Coordinates);
+            CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
+
+            comboBoxElement = CustomerFormWindowSession.FindElementByName("Open");
+            comboBoxElement.Click();
+
+            WindowsElement buyfund = CustomerFormWindowSession.FindElementByName(värderpappersförsvar);
+            CustomerFormWindowSession.Mouse.MouseMove(buyfund.Coordinates);
             CustomerFormWindowSession.Mouse.Click(null);
 
-            CustomerFormWindowSession.FindElementByAccessibilityId("cmdLiquidAccount").Click();
-            CustomerFormWindowSession.FindElementByName(konto).Click();
-            CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();
-
-            /* UserListPage.initialiazeUserListPage();
-             WindowsElement  userListItem = CustomerFormWindowSession.FindElementByAccessibilityId("lvwFundPossess"); //if (userListItem.size() != 0)
-
-
-             List<WindowsElement> list = userListItem.fin (List<WindowsElement>)userListItem;
-                 if (list.Count() != 0)
-                 {
-                     for (int i = 0; i < list.Count(); i++)
-                     {
-                        // for (IWebElement e : userListItem.get(i).findElements(By.name("userName")))
-                        {
-                         Console.WriteLine(i); //System.out.println(e.getText());
-                         }
-                     }
-                 }
-                 else
-                 {
-                     Assert.Fail("Folder doesn't have any user.");
-                 }*/
-
-            CustomerFormWindowSession.FindElementByAccessibilityId("ListViewItem-0").Click();
-            var fundvalue = CustomerFormWindowSession.FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-3").GetAttribute("Name");
-            var fundvalueconverted = Convert.ToInt64(Convert.ToDouble(fundvalue));
-            //Console.WriteLine(fundvalueconverted);
-            
-            CustomerFormWindowSession.FindElementByAccessibilityId("txtAmountSell").SendKeys(belopp);
+            CustomerFormWindowSession.FindElementByName(värdepapper).Click();
+            CustomerFormWindowSession.FindElementByAccessibilityId("txtAntal").SendKeys(antal);
             CustomerFormWindowSession.FindElementByAccessibilityId("optRadgNej").Click();
-            CustomerFormWindowSession.FindElementByAccessibilityId("cmdSell").Click();
-            CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
+            CustomerFormWindowSession.FindElementByName("Verkställ").Click();
+            CustomerFormWindowSession.FindElementByName("Bekräfta säljorder").FindElementByName("Yes").Click();
+            CustomerFormWindowSession.FindElementByName("Säljorder registrerad").FindElementByName("OK").Click();
+            CustomerFormWindowSession.FindElementByName("Stäng").Click();
 
            /* var varukorgenFormWindow = RootSession.FindElementByAccessibilityId("frmVarukorgen").GetAttribute("NativeWindowHandle");
             varukorgenFormWindow = (int.Parse(varukorgenFormWindow)).ToString("x"); // Convert to Hex
@@ -87,7 +64,6 @@ namespace SYNKproject1
             VarukorgenFormWindowSession.FindElementByName("Verkställ").Click();
             VarukorgenFormWindowSession.FindElementByName("Slutför med skriftligt godkännande").Click();
             VarukorgenFormWindowSession.FindElementByName("OK").Click();*/
-
         }
     }
 }

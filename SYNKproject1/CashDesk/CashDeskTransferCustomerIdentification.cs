@@ -14,9 +14,7 @@ namespace SYNKproject1
 {
     public class CashDeskTransferCustomerIdentification : OpenCashDesk
     {
-       // public WindowsDriver<WindowsElement> CashDeskWindowSession;
-      //  public WindowsDriver<WindowsElement> SynkWindowSession;
-
+     
         public CashDeskTransferCustomerIdentification()
         {
             PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);
@@ -32,9 +30,7 @@ namespace SYNKproject1
             CashDeskWindowSession.FindElementByName("Transaktioner").Click();
             CashDeskWindowSession.FindElementByName("Transaktioner").SendKeys("Ö");
             Thread.Sleep(2000);
-
-            //CashDeskWindowSession.FindElementByXPath("//*Pane[@name='Desktop 1']/window[@name='LENA GILBERTPLAINS, 19530630-0368 - Kassa']");
-            ///window[@name='LENA GILBERTPLAINS, 19530630-0368 - Överföring']/combo box[@name='Valuta:']/button[@name='Open']").Click();
+ 
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Tab);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown);

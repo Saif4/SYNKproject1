@@ -23,7 +23,7 @@ namespace SYNKproject1
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
 
-        public void Buyfund()
+        public void Buyfund(string belopp, string konto)
         {
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
             customerFormWindow = (int.Parse(customerFormWindow)).ToString("x"); // Convert to Hex
@@ -44,7 +44,7 @@ namespace SYNKproject1
             CustomerFormWindowSession.Mouse.Click(null);
 
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdLiquidAccount").Click();
-            CustomerFormWindowSession.FindElementByName("Privatkonto").Click();
+            CustomerFormWindowSession.FindElementByName(konto).Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdFondTorget").Click();
 
@@ -60,12 +60,14 @@ namespace SYNKproject1
             Console.WriteLine(fundname);
             Assert.IsNotEmpty(fundname);
 
-            CustomerFormWindowSession.FindElementByAccessibilityId("txtAmountBuy").SendKeys("100");
+            CustomerFormWindowSession.FindElementByAccessibilityId("txtAmountBuy").SendKeys(belopp);
             CustomerFormWindowSession.FindElementByAccessibilityId("optRadgNej").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdBuy").Click();
-           
-            WebDriverWait wait = new WebDriverWait(CustomerFormWindowSession, new TimeSpan(0, 0, 10));
-            wait.PollingInterval = new TimeSpan(0, 0, 0, 0, 50);
+
+            WebDriverWait wait = new WebDriverWait(CustomerFormWindowSession, new TimeSpan(0, 0, 10))
+            {
+                PollingInterval = new TimeSpan(0, 0, 0, 0, 50)
+            };
             wait.Until(ExpectedConditions.ElementIsVisible(By.Name("Fondtorget - Har du handlat färdigt?")));                                         
               {
                 try
@@ -83,12 +85,20 @@ namespace SYNKproject1
 
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("frmFaktablad").FindElementByAccessibilityId("cmdClose").Click();
-            RootSession.FindElementByAccessibilityId("frmVarukorgen").FindElementByAccessibilityId("cmdAccept").Click();
-           
-            RootSession.FindElementByAccessibilityId("_optEsign_1").Click();
-            RootSession.FindElementByAccessibilityId("cmdOk").Click();
-            
-            
+
+            /*var varukorgenFormWindow = RootSession.FindElementByAccessibilityId("frmVarukorgen").GetAttribute("NativeWindowHandle");
+            varukorgenFormWindow = (int.Parse(varukorgenFormWindow)).ToString("x"); // Convert to Hex
+
+            // Create session by attaching to "Affärssammanställning" top level window
+            DesiredCapabilities varukorgenFormAppCapabilities = new DesiredCapabilities();
+            varukorgenFormAppCapabilities.SetCapability("appTopLevelWindow", varukorgenFormWindow);
+            VarukorgenFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), varukorgenFormAppCapabilities);
+            VarukorgenFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            VarukorgenFormWindowSession.FindElementByName("Verkställ").Click();
+            VarukorgenFormWindowSession.FindElementByName("Slutför med skriftligt godkännande").Click();
+            VarukorgenFormWindowSession.FindElementByName("OK").Click();*/
+
+
         }
     }
 }

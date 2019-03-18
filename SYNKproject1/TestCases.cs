@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using IgnoreAttribute = NUnit.Framework.IgnoreAttribute;
 
 namespace SYNKproject1
 {
-    public class TestCases
+    public class TestCase
     {
         
         static void Main(string[] args)
@@ -17,18 +18,19 @@ namespace SYNKproject1
         {
             Drivers SynkStartup = new Drivers();
             SynkStartup.Driver();
-            OpenCashDesk opendesk = new OpenCashDesk();
-            opendesk.CashDesk();
-            LoginToSynk synkStartWindowLogin = new LoginToSynk();
-            synkStartWindowLogin.Synklogin("195306300368");
-
-            
+            LoginToSynk login = new LoginToSynk();
+            login.Synklogin("197611040010");
+            ChangeFund changeFund = new ChangeFund();
+            changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Indexfond USA", "100");
 
             //TestClass test = new TestClass();
             //test.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "1000");
 
         }
+
+       
         [TestFixture]
+        [Order(4)]
         public class DepositAndWithDrawTests
         {
             [OneTimeSetUp]
@@ -36,8 +38,6 @@ namespace SYNKproject1
             {
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver();
-                NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
-                navigate.InitialSYNKStartWindow();
                 OpenCashDesk opendesk = new OpenCashDesk();
                 opendesk.CashDesk();
             }
@@ -53,6 +53,12 @@ namespace SYNKproject1
             {
                 CashDeskDepositAboveLimit cashDeskDepositAboveLimit = new CashDeskDepositAboveLimit();
                 cashDeskDepositAboveLimit.DepositAboveLimit("19530630-0368", "10000");
+            }
+            [Test]
+            public void MultipleDeposits()
+            {
+                MultipleDeposits multipleDeposits = new MultipleDeposits();
+                multipleDeposits.MultipleDepoit("19530630-0368", "14 9020 274 717-6", "50", "8327-9, 904 368 271-6", "50");
             }
             [Test]
             public void Withdraw()
@@ -72,12 +78,16 @@ namespace SYNKproject1
             {
                 CloseCashDesk closedesk = new CloseCashDesk();
                 closedesk.ClosecashDesk();
+                DriverQuit teardown = new DriverQuit();
+                teardown.Teardown();
+                Thread.Sleep(1000);
             }
-
+            
         }
-       [TestFixture]
+        [TestFixture]
+        [Order(3)]
         public class TransferTests
-        {
+         {
             [OneTimeSetUp]
             public void InitialDriver()
             {
@@ -116,7 +126,7 @@ namespace SYNKproject1
             {
                 
                 CashDeskTransferDifferentBank cashDeskTransfer = new CashDeskTransferDifferentBank();
-                cashDeskTransfer.TransferToDifferentBank("195306300368", "500");
+                cashDeskTransfer.TransferToDifferentBank("195306300368", "14 9020 274 717-6", "500");
                
             }
             [Test]
@@ -133,9 +143,11 @@ namespace SYNKproject1
                 closedesk.ClosecashDesk();
                 DriverQuit teardown = new DriverQuit();
                 teardown.Teardown();
+                Thread.Sleep(1000);
             }
         }
         [TestFixture]
+        [Order(2)]
         public class PaymentsTest
         {
             [OneTimeSetUp]
@@ -181,10 +193,12 @@ namespace SYNKproject1
                 closedesk.ClosecashDesk();
                 DriverQuit teardown = new DriverQuit();
                 teardown.Teardown();
+                Thread.Sleep(1000);
             }
 
         }
         [TestFixture]
+        [Order(6)]
         public class Funds
         {
             [OneTimeSetUp]
@@ -193,29 +207,130 @@ namespace SYNKproject1
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver();
                 LoginToSynk login= new LoginToSynk();
-                login.Synklogin("195306300368");
+                login.Synklogin("197611040010");
             }
             [Test]
+            [Order(1)]
             public void BuyFund()
             {
                 BuyFund buyFund = new BuyFund();
-                buyFund.Buyfund();
+                buyFund.Buyfund("110", "Privatkonto");
             }
             [Test]
+            [Order(2)]
             public void SellFund()
             {
                 SellFund sellFund = new SellFund();
-                sellFund.Sellfund();
+                sellFund.Sellfund("55", "Privatkonto");
+            }
+            [Test]
+            [Order(3)]
+            public void BuyShare()
+            {
+                BuyShare buyShare = new BuyShare();
+                buyShare.Buyshare("327327-02453-2: Värdepapperstjänst Bas ISK", "ERICSSON B", "2");
+            }
+            [Test]
+            [Order(4)]
+            public void SellShare()
+            {
+
+                SellShare sellShare = new SellShare();
+                sellShare.Sellshare("327327-02453-2: Värdepapperstjänst Bas ISK", "ERICSSON B", "2");
+
+            }
+            [Test]
+            [Order(5)]
+            public void ChangeFund()
+            {
+                ChangeFund changeFund = new ChangeFund();
+                changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Indexfond USA", "100");
+            }
+            [Test]
+            [Order(6)]
+            public void Cart()
+            {
+                Cart cart = new Cart();
+                cart.Cartview();
             }
             [OneTimeTearDown]
             public void TearDown()
             {
+               
                 DriverQuit teardown = new DriverQuit();
                 teardown.Teardown();
+                Thread.Sleep(1000);
             }
 
         }
-            
+        [TestFixture]
+        [Order(5)]
+        public class CreateAnAccount
+        {
+            [OneTimeSetUp]
+            public void InitialDriver()
+            {
+                Drivers SynkStartup = new Drivers();
+                SynkStartup.Driver();
+                LoginToSynk login = new LoginToSynk();
+                login.Synklogin("196308120093");
+            }
+            [Test]
+            public void CreateNewAccount()
+            {
+                CreateAccount create = new CreateAccount();
+                create.OpenAccount();
+            }
+            [OneTimeTearDown]
+            public void TearDown()
+            {
+               DriverQuit teardown = new DriverQuit();
+               teardown.Teardown();
+               Thread.Sleep(1000);
+            }
+        }
+        [TestFixture]
+        [Order(1)]
+        public class SynkModule
+        {
+            [OneTimeSetUp]
+            public void InitialDriver()
+            {
+                Drivers SynkStartup = new Drivers();
+                SynkStartup.Driver();       
+            }
+            [Test]
+            public void CustomerModule()
+            {
+                CustomerModule customerModule = new CustomerModule();
+                customerModule.LoginTocustomer("195306300368");
+            }
+            [Test]
+            public void AccountModule()
+            {
+                AccountModule accountModule = new AccountModule();
+                accountModule.OpenAccountModule("8327-9, 04 100 883-0");
+            }
+            [Test]
+            public void CardModule()
+            {
+                CardModule cardModule = new CardModule();
+                cardModule.OpenCardModule("5168 1501 0490 8371");
+            }
+            [Test]
+            public void FundAccountModule()
+            {
+                FundAccountModule fundAccountModule = new FundAccountModule();
+                fundAccountModule.OpenFundModule("7 973 484-4");
+            }
+            [OneTimeTearDown]
+            public void Teardown()
+            {
+               DriverQuit teardown = new DriverQuit();
+               teardown.Teardown();
+               Thread.Sleep(1000);
+            }
+        }
 
     }
 }

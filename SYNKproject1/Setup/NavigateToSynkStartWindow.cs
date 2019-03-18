@@ -24,7 +24,7 @@ namespace SYNKproject1
         {
 
 
-            //Find "SYNK - Startfönster"
+            // Skapar en session som länkas till Synk start-fönstret.
             var synkStartWindow = RootSession.FindElementByAccessibilityId("Saljstöd");
             var synkStartWindowHandle = synkStartWindow.GetAttribute("NativeWindowHandle");
             synkStartWindowHandle = (int.Parse(synkStartWindowHandle)).ToString("x"); // Convert to Hex

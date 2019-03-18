@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
@@ -66,23 +67,31 @@ namespace SYNKproject1
             RootSession.FindElementByName("Slutför med skriftligt godkännande").Click();
             RootSession.FindElementByName("OK").Click();
 
-            WebDriverWait wait = new WebDriverWait(CustomerFormWindowSession, new TimeSpan(0, 0, 10));
-            wait.PollingInterval = new TimeSpan(0, 0, 0, 0, 50);
-            wait.Until(ExpectedConditions.ElementToBeClickable(CustomerFormWindowSession.FindElementByName("Bokonto?????????????????????????????????????"))).Click();                                         
-              //vänta till varukorgen är klart             
-            try
+           /* try
             {
-                CustomerFormWindowSession.FindElementByName("OK").Click();
-                //return false;
+                
+                var korg = RootSession.FindElementByAccessibilityId("frmVarukorgen");
+                WebDriverWait waitt = new WebDriverWait(RootSession, new TimeSpan(0, 0, 10));
+                waitt.PollingInterval = new TimeSpan(0, 0, 0, 0, 50);
+                waitt.Until(ExpectedConditions.InvisibilityOfElementLocated(korg));
+                 
             }
             catch (Exception)
             {
-                Console.WriteLine("not found");
-            }
-            //  return true;
+
+            }*/
+            Thread.Sleep(50000);
+            WebDriverWait wait = new WebDriverWait(CustomerFormWindowSession, new TimeSpan(0, 0, 10))
+            {
+                PollingInterval = new TimeSpan(0, 0, 0, 0, 50)
+            };
+            wait.Until(ExpectedConditions.ElementToBeClickable(CustomerFormWindowSession.FindElementByName("Bokonto?????????????????????????????????????"))).Click();                                         
+                         
+           
+            
 
         
-        Thread.Sleep(50000);
+       
 
         /*if (RootSession.PageSource.Contains("Saif @ EVRY ‎- OneNote"))
               {

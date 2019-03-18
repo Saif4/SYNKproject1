@@ -38,6 +38,7 @@ namespace SYNKproject1
              
              SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
              SynkWindowSession.FindElementByName("Aktivera").Click();*/
+             // Loggar in till en kund
              RootSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
              RootSession.FindElementByName("Aktivera").Click(); 
         }

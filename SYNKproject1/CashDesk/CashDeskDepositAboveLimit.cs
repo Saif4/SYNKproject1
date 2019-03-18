@@ -14,9 +14,7 @@ namespace SYNKproject1
 {
    public class CashDeskDepositAboveLimit : OpenCashDesk
     {
-       // public WindowsDriver<WindowsElement> CashDeskWindowSession;
-       // public WindowsDriver<WindowsElement> SynkWindowSession;
-
+       
         public CashDeskDepositAboveLimit()
         {
             PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);

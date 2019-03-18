@@ -10,7 +10,7 @@ namespace SYNKproject1
     {
         public void Teardown()
         {
-            // Close the application and delete the session
+            // Stänger Synk och tar bort sessionen.
             if (SYNKSession != null)
             {
 
