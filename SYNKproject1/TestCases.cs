@@ -18,10 +18,8 @@ namespace SYNKproject1
         {
             Drivers SynkStartup = new Drivers();
             SynkStartup.Driver();
-            LoginToSynk login = new LoginToSynk();
-            login.Synklogin("197611040010");
-            ChangeFund changeFund = new ChangeFund();
-            changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Indexfond USA", "100");
+            CardConnectedToAccount cardConnectedToAccount = new CardConnectedToAccount();
+            cardConnectedToAccount.CardAccountConnection("8327-9, 04 100 883-0");
 
             //TestClass test = new TestClass();
             //test.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "1000");
@@ -199,6 +197,7 @@ namespace SYNKproject1
         }
         [TestFixture]
         [Order(6)]
+        [Ignore("Ignore a fixture")]
         public class Funds
         {
             [OneTimeSetUp]
@@ -221,7 +220,7 @@ namespace SYNKproject1
             public void SellFund()
             {
                 SellFund sellFund = new SellFund();
-                sellFund.Sellfund("55", "Privatkonto");
+                sellFund.Sellfund("100", "Privatkonto");
             }
             [Test]
             [Order(3)]
@@ -236,7 +235,7 @@ namespace SYNKproject1
             {
 
                 SellShare sellShare = new SellShare();
-                sellShare.Sellshare("327327-02453-2: Värdepapperstjänst Bas ISK", "ERICSSON B", "2");
+                sellShare.Sellshare("327327-02453-2: Värdepapperstjänst Bas ISK", "ERICSSON B", "1");
 
             }
             [Test]
@@ -244,7 +243,7 @@ namespace SYNKproject1
             public void ChangeFund()
             {
                 ChangeFund changeFund = new ChangeFund();
-                changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Indexfond USA", "100");
+                changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Indexfond USA", "115");
             }
             [Test]
             [Order(6)]
@@ -322,6 +321,25 @@ namespace SYNKproject1
             {
                 FundAccountModule fundAccountModule = new FundAccountModule();
                 fundAccountModule.OpenFundModule("7 973 484-4");
+            }
+            [Test]
+            [Order(1)]
+            public void LogInToCustomerByName()
+            {
+                SearchCustomer searchCustomer = new SearchCustomer();
+                searchCustomer.Searchcustomer("Plains");
+            }
+            [Test]
+            public void AccountOverview()
+            {
+                AccountOverview accountOverview = new AccountOverview();
+                accountOverview.Accountoverview("195306300368");
+            }
+            [Test]
+            public void CardAndAccountConnection()
+            {
+                CardConnectedToAccount cardConnectedToAccount = new CardConnectedToAccount();
+                cardConnectedToAccount.CardAccountConnection("8327-9, 04 100 883-0");
             }
             [OneTimeTearDown]
             public void Teardown()

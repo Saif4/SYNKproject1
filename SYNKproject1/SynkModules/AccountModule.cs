@@ -24,8 +24,6 @@ namespace SYNKproject1
 
             string customerFormWindow = RootSession.FindElementByAccessibilityId("frmKonto").GetAttribute("Name");
 
-
-            Console.WriteLine(customerFormWindow);
             Assert.IsNotEmpty(customerFormWindow);
 
 

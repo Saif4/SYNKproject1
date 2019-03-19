@@ -24,8 +24,6 @@ namespace SYNKproject1
 
             string cardWindow = RootSession.FindElementByAccessibilityId("frmKortViewer").GetAttribute("Name");
 
-
-            Console.WriteLine(cardWindow);
             Assert.IsNotEmpty(cardWindow);
 
 

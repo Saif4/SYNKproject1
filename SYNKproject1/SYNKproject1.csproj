@@ -115,8 +115,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SynkModules\CardConnectedToAccount.cs" />
+    <Compile Include="SynkModules\AccountOverview.cs" />
     <Compile Include="CashDesk\MultipleDeposits.cs" />
     <Compile Include="Funds\ChangeFund.cs" />
+    <Compile Include="SynkModules\SearchCustomer.cs" />
     <Compile Include="SynkModules\FundAccountModule.cs" />
     <Compile Include="SynkModules\AccountModule.cs" />
     <Compile Include="SynkModules\CardModule.cs" />

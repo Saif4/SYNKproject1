@@ -21,12 +21,10 @@ namespace SYNKproject1
             {
                 RootSession.FindElementByAccessibilityId("txtFondkontoNr").SendKeys(fondkontonummer);
                 RootSession.FindElementByName("Aktivera").Click();
-                RootSession.FindElementByAccessibilityId("cmdVisa").Click();
+                RootSession.FindElementByAccessibilityId("frmFondKontoInfo").FindElementByAccessibilityId("cmdVisa").Click();
 
                 string fundaccount = RootSession.FindElementByAccessibilityId("frmFondoversikt").GetAttribute("Name");
 
-                
-                Console.WriteLine(fundaccount);
                 Assert.IsNotEmpty(fundaccount);
 
 
