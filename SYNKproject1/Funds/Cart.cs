@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SYNKproject1
@@ -33,11 +34,8 @@ namespace SYNKproject1
             CartSession.FindElementByName("Verkställ").Click();
             CartSession.FindElementByName("Slutför med skriftligt godkännande").Click();
             CartSession.FindElementByName("OK").Click();
-            /*
-            RootSession.FindElementByAccessibilityId("frmVarukorgen").FindElementByAccessibilityId("cmdAccept").Click();
-
-            RootSession.FindElementByAccessibilityId("_optEsign_1").Click();
-            RootSession.FindElementByAccessibilityId("cmdOk").Click();*/
+            Thread.Sleep(50000);
+           
         }
     }
 }

@@ -25,16 +25,17 @@ namespace SYNKproject1
 
         public void Buyfund(string belopp, string konto)
         {
+            // Hittar kund modalen och länkar till den
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
             customerFormWindow = (int.Parse(customerFormWindow)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "Customer View" top level window
             DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindow);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            CustomerFormWindowSession.FindElementByName("Affärer").Click();
 
+            // Öpnnar köp fonder fönstret
+            CustomerFormWindowSession.FindElementByName("Affärer").Click();
             WindowsElement fund = CustomerFormWindowSession.FindElementByName("Fonder");
             CustomerFormWindowSession.Mouse.MouseMove(fund.Coordinates);
             CustomerFormWindowSession.Mouse.Click(null);
@@ -43,6 +44,7 @@ namespace SYNKproject1
             CustomerFormWindowSession.Mouse.MouseMove(buy.Coordinates);
             CustomerFormWindowSession.Mouse.Click(null);
 
+            // Ange vilket konto som ska användas för fondköpet
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdLiquidAccount").Click();
             CustomerFormWindowSession.FindElementByName(konto).Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();
@@ -56,10 +58,12 @@ namespace SYNKproject1
             CustomerFormWindowSession.FindElementByXPath("//*[contains(@LocalizedControlType,'check box')]").Click();
             CustomerFormWindowSession.FindElementByName("OK").Click();
 
+            // Verifiera Web Service funktionen anropas och fonden namn är synligt
             var fundname = CustomerFormWindowSession.FindElementByAccessibilityId("HeadingCostsAndFees").GetAttribute("Name");
             Console.WriteLine(fundname);
             Assert.IsNotEmpty(fundname);
 
+            // Slutföra fondköpet
             CustomerFormWindowSession.FindElementByAccessibilityId("txtAmountBuy").SendKeys(belopp);
             CustomerFormWindowSession.FindElementByAccessibilityId("optRadgNej").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdBuy").Click();
@@ -81,24 +85,10 @@ namespace SYNKproject1
                 }
                  
                 
-               }
+                }
 
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("frmFaktablad").FindElementByAccessibilityId("cmdClose").Click();
-
-            /*var varukorgenFormWindow = RootSession.FindElementByAccessibilityId("frmVarukorgen").GetAttribute("NativeWindowHandle");
-            varukorgenFormWindow = (int.Parse(varukorgenFormWindow)).ToString("x"); // Convert to Hex
-
-            // Create session by attaching to "Affärssammanställning" top level window
-            DesiredCapabilities varukorgenFormAppCapabilities = new DesiredCapabilities();
-            varukorgenFormAppCapabilities.SetCapability("appTopLevelWindow", varukorgenFormWindow);
-            VarukorgenFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), varukorgenFormAppCapabilities);
-            VarukorgenFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            VarukorgenFormWindowSession.FindElementByName("Verkställ").Click();
-            VarukorgenFormWindowSession.FindElementByName("Slutför med skriftligt godkännande").Click();
-            VarukorgenFormWindowSession.FindElementByName("OK").Click();*/
-
-
         }
     }
 }

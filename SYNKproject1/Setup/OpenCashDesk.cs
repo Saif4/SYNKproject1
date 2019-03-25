@@ -43,7 +43,7 @@ namespace SYNKproject1
 
             // verifiera att kassan är stängd
             var EmptydeskNR = CashDeskWindowSession.FindElementByName("Kassa: ").GetAttribute("Name");
-            Console.WriteLine(EmptydeskNR);
+     
             string verifycashdeskIsClosed = "Kassa: ";
             Assert.AreEqual(verifycashdeskIsClosed, EmptydeskNR);
             
@@ -59,11 +59,13 @@ namespace SYNKproject1
 
             CashDeskWindowSession.FindElementByName("Verkställ").Click();
             Thread.Sleep(3000);
+
+            // Verifierar att kassan är öppet.
             var NotEmptydeskNR = CashDeskWindowSession.FindElementByName("Kassa: " + Desknr).GetAttribute("Name");
            
             string verifycashdeskIsOpen = "Kassa: ";
             Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);
-            // Verifierar att kassan är öppet.
+            
             
            
         }

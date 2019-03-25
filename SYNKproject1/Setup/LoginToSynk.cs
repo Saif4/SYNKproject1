@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    //Customer selection
+    
     public class LoginToSynk : DriversRoot
     {
         
         public const string customer = "ÅkeMorrisplains.txt";
-        public WindowsDriver<WindowsElement> SynkWindowSession;
+       
 
         public LoginToSynk()
         {
@@ -25,9 +25,8 @@ namespace SYNKproject1
         {
             StreamReader sr = new StreamReader(customer);
             string customerAccount = sr.ReadLine();
-            string customerAccount2 = sr.ReadLine();
-            //Find "SYNK - Startfönster"
-           /* var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster").GetAttribute("NativeWindowHandle");//Saljstöd
+           
+             /* var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster").GetAttribute("NativeWindowHandle");//Saljstöd
              synkStartWindow = (int.Parse(synkStartWindow)).ToString("x"); // Convert to Hex
 
              // Create session by attaching to "SYNK - Startfönster" top level window
@@ -37,8 +36,7 @@ namespace SYNKproject1
              SynkWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));
              
              SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
-             SynkWindowSession.FindElementByName("Aktivera").Click();*/
-             // Loggar in till en kund
+             SynkWindowSession.FindElementByName("Aktivera").Click();*/  // Loggar in på en kund
              RootSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
              RootSession.FindElementByName("Aktivera").Click(); 
         }

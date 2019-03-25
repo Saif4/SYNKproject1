@@ -22,14 +22,11 @@ namespace SYNKproject1
         }
         public void InitialSYNKStartWindow()
         {
-
-
-            // Skapar en session som länkas till Synk start-fönstret.
+         // Skapar en session som länkas till Synk start-fönstret.
             var synkStartWindow = RootSession.FindElementByAccessibilityId("Saljstöd");
             var synkStartWindowHandle = synkStartWindow.GetAttribute("NativeWindowHandle");
             synkStartWindowHandle = (int.Parse(synkStartWindowHandle)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "SYNK - Startfönster" top level window
             DesiredCapabilities synkAppCapabilities = new DesiredCapabilities();
             synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindowHandle);
             SynkWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);

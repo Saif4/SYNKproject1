@@ -20,7 +20,7 @@ namespace SYNKproject1
             PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);
         }
 
-        public void Deposit(string kundnummer, string belopp)
+        public void Deposit(string kundnummer, string kontotyp, string belopp)
         {
             /* NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
              navigate.InitialSYNKStartWindow();
@@ -60,21 +60,22 @@ namespace SYNKproject1
              string verifycashdeskIsOpen = "Kassa: ";
              Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);
              Thread.Sleep(1000);*/
+             // Anger en kundnummer
             Thread.Sleep(1000);
             CashDeskWindowSession.FindElementByAccessibilityId("FBSTCustomernumber").SendKeys(kundnummer);
             Thread.Sleep(1000);
-
+            // Går in i insättningsvyn och göra en insättning
             CashDeskWindowSession.FindElementByName("Transaktioner").Click();
             CashDeskWindowSession.FindElementByName("Transaktioner").SendKeys("I");
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAccountnumber").Click();
-            CashDeskWindowSession.FindElementByName("Privatkonto").Click();
+            CashDeskWindowSession.FindElementByName(kontotyp).Click();
             CashDeskWindowSession.FindElementByName("OK").Click();
             CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys(belopp);
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAccept").Click();
-
+            // Kollar att insättningen är synligt 
             var In = CashDeskWindowSession.FindElementByName("IN").Displayed;
-
+            // Avslutar transaktionen
             CashDeskWindowSession.FindElementByName("Arkiv").Click();
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);

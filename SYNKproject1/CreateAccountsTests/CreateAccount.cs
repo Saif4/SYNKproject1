@@ -25,15 +25,12 @@ namespace SYNKproject1
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
         public void OpenAccount()
-        {
-
-
-            // Find "Customer View"
+        {      
+            // Hittar kund modalen och länkar till den 
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView");
             var customerFormWindowHandle = customerFormWindow.GetAttribute("NativeWindowHandle");
             customerFormWindowHandle = (int.Parse(customerFormWindowHandle)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "Customer View" top level window
             DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindowHandle);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
@@ -47,13 +44,13 @@ namespace SYNKproject1
             CustomerFormWindowSession.FindElementByAccessibilityId("cboChooseAccount").SendKeys("B");
             CustomerFormWindowSession.FindElementByName("OK").Click();
 
-            // Save Account Number and click OK
+            // Sparar konto nummret för att sedan kunna verifiera att konto nummret stämmer
             var accountNumber = CustomerFormWindowSession.FindElementByAccessibilityId("txtAccount").GetAttribute("Value.Value");
             Console.WriteLine(accountNumber);
 
             CustomerFormWindowSession.FindElementByName("OK").Click();
 
-            // Find "Affärssammanställning"
+            // Hittar "Affärssammanställning"
            /* var varukorgenFormWindow = RootSession.FindElementByAccessibilityId("frmVarukorgen");
             var varukorgenFormWindowHandle = varukorgenFormWindow.GetAttribute("NativeWindowHandle");
             varukorgenFormWindowHandle = (int.Parse(varukorgenFormWindowHandle)).ToString("x"); // Convert to Hex
@@ -67,60 +64,26 @@ namespace SYNKproject1
             RootSession.FindElementByName("Slutför med skriftligt godkännande").Click();
             RootSession.FindElementByName("OK").Click();
 
-           /* try
-            {
-                
-                var korg = RootSession.FindElementByAccessibilityId("frmVarukorgen");
-                WebDriverWait waitt = new WebDriverWait(RootSession, new TimeSpan(0, 0, 10));
-                waitt.PollingInterval = new TimeSpan(0, 0, 0, 0, 50);
-                waitt.Until(ExpectedConditions.InvisibilityOfElementLocated(korg));
-                 
-            }
-            catch (Exception)
-            {
-
-            }*/
+            // Väntar tills Affärssammanställning har laddats klart och sedan verifiera att den nya kontot har skapats
             Thread.Sleep(50000);
             WebDriverWait wait = new WebDriverWait(CustomerFormWindowSession, new TimeSpan(0, 0, 10))
             {
                 PollingInterval = new TimeSpan(0, 0, 0, 0, 50)
             };
-            wait.Until(ExpectedConditions.ElementToBeClickable(CustomerFormWindowSession.FindElementByName("Bokonto?????????????????????????????????????"))).Click();                                         
-                         
-           
-            
+            wait.Until(ExpectedConditions.ElementToBeClickable(CustomerFormWindowSession.FindElementByName("Bokonto?????????????????????????????????????"))).Click();
 
-        
-       
+            /*if (RootSession.PageSource.Contains("Saif @ EVRY ‎- OneNote"))
+             {
+              var oneNote = RootSession.FindElementByName("Saif @ EVRY ‎- OneNote");
+              var oneNoteWindowHandle = oneNote.GetAttribute("NativeWindowHandle");
+              oneNoteWindowHandle = (int.Parse(oneNoteWindowHandle)).ToString("X");
 
-        /*if (RootSession.PageSource.Contains("Saif @ EVRY ‎- OneNote"))
-              {
-               var oneNote = RootSession.FindElementByName("Saif @ EVRY ‎- OneNote");
-               var oneNoteWindowHandle = oneNote.GetAttribute("NativeWindowHandle");
-               oneNoteWindowHandle = (int.Parse(oneNoteWindowHandle)).ToString("X");
-
-               DesiredCapabilities oneNotecap = new DesiredCapabilities();
-               oneNotecap.SetCapability("appTopLevelWindow", oneNoteWindowHandle);
-               OneNoteSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), oneNotecap);
-               OneNoteSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-               OneNoteSession.FindElementByAccessibilityId("Close").Click();
-             }*/
-
-            /* var customerFormWindow1 = RootSession.FindElementByAccessibilityId("frmCustView");
-             var customerFormWindowHandle1 = customerFormWindow.GetAttribute("NativeWindowHandle");                                                                                                                                                                          
-             customerFormWindowHandle1 = (int.Parse(customerFormWindowHandle1)).ToString("x"); // Convert to Hex
-
-            // Create session by attaching to "Customer View" top level window
-             DesiredCapabilities customerFormAppCapabilities1 = new DesiredCapabilities();
-             customerFormAppCapabilities1.SetCapability("appTopLevelWindow", customerFormWindowHandle1);
-             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities1);
-             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-             Thread.Sleep(5000);*/
-
-           /* WindowsElement AMWIcon = CustomerFormWindowSession.FindElementByName("Bokonto?????????????????????????????????????");
-            CustomerFormWindowSession.Mouse.MouseMove(AMWIcon.Coordinates);
-            CustomerFormWindowSession.Mouse.DoubleClick(null);*/
-         
+              DesiredCapabilities oneNotecap = new DesiredCapabilities();
+              oneNotecap.SetCapability("appTopLevelWindow", oneNoteWindowHandle);
+              OneNoteSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), oneNotecap);
+              OneNoteSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+              OneNoteSession.FindElementByAccessibilityId("Close").Click();
+            }*/
             var ValidAccountNumber = CustomerFormWindowSession.FindElementByAccessibilityId("rtbEng").GetAttribute("Value.Value");
             //verify that the account has created
             Assert.That(ValidAccountNumber, Does.Contain(accountNumber));

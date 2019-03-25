@@ -20,7 +20,7 @@ namespace SYNKproject1
             PageFactory.InitElements(OpenCashDesk.CashDeskWindowSession, this);
         }
 
-        public void WithdrawAboveLimit(string kundnummer, string belopp)
+        public void WithdrawAboveLimit(string kundnummer, string kontotyp, string belopp)
         {
             /* NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
                navigate.InitialSYNKStartWindow();
@@ -59,28 +59,33 @@ namespace SYNKproject1
                Console.WriteLine(NotEmptydeskNR);
                string verifycashdeskIsOpen = "Kassa: ";
                Assert.AreNotEqual(verifycashdeskIsOpen, NotEmptydeskNR);*/
+            // Anger en kundnummer 
             Thread.Sleep(1000);
             CashDeskWindowSession.FindElementByAccessibilityId("FBSTCustomernumber").SendKeys(kundnummer);
             Thread.Sleep(1000);
 
+            // Går in i uttagvyn och gör en uttag öven gränsen
             CashDeskWindowSession.FindElementByName("Transaktioner").Click();
             CashDeskWindowSession.FindElementByName("Transaktioner").SendKeys("U");
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAccountnumber").Click();
-            CashDeskWindowSession.FindElementByName("Privatkonto").Click();
+            CashDeskWindowSession.FindElementByName(kontotyp).Click();
             CashDeskWindowSession.FindElementByName("OK").Click();
             CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys(belopp);
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAccept").Click();
 
+            // Kollar att identifierings rutan dyker upp när man har gått över gränsen.
             if (CashDeskWindowSession.PageSource.Contains("frmAMLInfo"))
             {
                 CashDeskWindowSession.FindElementByAccessibilityId("frmAMLInfo").FindElementByAccessibilityId("chkSameAsCustomer").Click();
                 CashDeskWindowSession.FindElementByAccessibilityId("cmdOK").Click();
             }
 
+            // Kollar att transaktionen är synligt 
             var In = CashDeskWindowSession.FindElementByName("UT").Displayed;
 
+            // Avslutar transaktionen
             CashDeskWindowSession.FindElementByName("Arkiv").Click();
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);

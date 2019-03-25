@@ -12,45 +12,45 @@ namespace SYNKproject1
 {
     public class TestCase
     {
-        
+
         static void Main(string[] args)
 
         {
             Drivers SynkStartup = new Drivers();
-            SynkStartup.Driver();
-            CardConnectedToAccount cardConnectedToAccount = new CardConnectedToAccount();
-            cardConnectedToAccount.CardAccountConnection("8327-9, 04 100 883-0");
+            SynkStartup.Driver("P417JI6", "evry123");
+            ShowInterest showInterest = new ShowInterest();
+            showInterest.Showinterest();
 
             //TestClass test = new TestClass();
             //test.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "1000");
 
         }
 
-       
+
         [TestFixture]
-        [Order(4)]
+        [Order(5)]
         public class DepositAndWithDrawTests
         {
             [OneTimeSetUp]
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver();
+                SynkStartup.Driver("P417JI6", "evry123");
                 OpenCashDesk opendesk = new OpenCashDesk();
                 opendesk.CashDesk();
             }
             [Test]
             public void Deposit()
             {
-               
+
                 CashDeskDeposit deposit = new CashDeskDeposit();
-                deposit.Deposit("19530630-0368", "1500");
+                deposit.Deposit("19530630-0368", "Privatkonto", "1500");
             }
             [Test]
             public void DepositAboveLimit()
             {
                 CashDeskDepositAboveLimit cashDeskDepositAboveLimit = new CashDeskDepositAboveLimit();
-                cashDeskDepositAboveLimit.DepositAboveLimit("19530630-0368", "10000");
+                cashDeskDepositAboveLimit.DepositAboveLimit("19530630-0368", "Privatkonto", "10000");
             }
             [Test]
             public void MultipleDeposits()
@@ -62,16 +62,16 @@ namespace SYNKproject1
             public void Withdraw()
             {
                 CashDeskWithdraw withdraw = new CashDeskWithdraw();
-                withdraw.Withdraw("19530630-0368", "500");
+                withdraw.Withdraw("19530630-0368", "Privatkonto", "500");
             }
             [Test]
             public void WithdrawAboveLimit()
             {
                 CashDeskWithdrawAboveLimit cashDeskWithdrawAboveLimit = new CashDeskWithdrawAboveLimit();
-                cashDeskWithdrawAboveLimit.WithdrawAboveLimit("19530630-0368", "10000");
+                cashDeskWithdrawAboveLimit.WithdrawAboveLimit("19530630-0368", "Privatkonto", "10000");
             }
-            [OneTimeTearDown] 
-          
+            [OneTimeTearDown]
+
             public void TearDown()
             {
                 CloseCashDesk closedesk = new CloseCashDesk();
@@ -80,17 +80,17 @@ namespace SYNKproject1
                 teardown.Teardown();
                 Thread.Sleep(1000);
             }
-            
+
         }
         [TestFixture]
-        [Order(3)]
+        [Order(4)]
         public class TransferTests
-         {
+        {
             [OneTimeSetUp]
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver();
+                SynkStartup.Driver("P417JI6", "evry123");
                 NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
                 navigate.InitialSYNKStartWindow();
                 OpenCashDesk opendesk = new OpenCashDesk();
@@ -122,17 +122,17 @@ namespace SYNKproject1
             [Order(4)]
             public void TransferToDifferentBank()
             {
-                
+
                 CashDeskTransferDifferentBank cashDeskTransfer = new CashDeskTransferDifferentBank();
                 cashDeskTransfer.TransferToDifferentBank("195306300368", "14 9020 274 717-6", "500");
-               
+
             }
             [Test]
             public void TransferWithinSameBankWithVerification()
             {
                 CashDeskTransfer cashDeskTransfer = new CashDeskTransfer();
                 cashDeskTransfer.OpenCashDeskAndTransfer("19530630-0368", "500");
-                
+
             }
             [OneTimeTearDown]
             public void TearDown()
@@ -145,18 +145,18 @@ namespace SYNKproject1
             }
         }
         [TestFixture]
-        [Order(2)]
+        [Order(3)]
         public class PaymentsTest
         {
             [OneTimeSetUp]
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver();
+                SynkStartup.Driver("P417JI6", "evry123");
                 OpenCashDesk opendesk = new OpenCashDesk();
                 opendesk.CashDesk();
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
-                synkStartWindowLogin.Synklogin("195306300368");    
+                synkStartWindowLogin.Synklogin("195306300368");
             }
             [Test]
             public void BgPayment()
@@ -171,7 +171,7 @@ namespace SYNKproject1
             [Test]
             public void PaymentVerifications()
             {
-               
+
                 PaymentVerifications payment = new PaymentVerifications();
                 payment.BgAndPGpayment("195306300368", "100", "5175-4158", "5175-4159", "7904130361", "1234567890", "12345678912345679");
             }
@@ -179,7 +179,7 @@ namespace SYNKproject1
             public void ChangePayment()
             {
 
-               
+
                 ChangePayment payment = new ChangePayment();
                 payment.BgAndPGpayment("195306300368", "100", "5175-4158", "7904130361");
             }
@@ -196,7 +196,7 @@ namespace SYNKproject1
 
         }
         [TestFixture]
-        [Order(6)]
+        [Order(7)]
         [Ignore("Ignore a fixture")]
         public class Funds
         {
@@ -204,8 +204,8 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver();
-                LoginToSynk login= new LoginToSynk();
+                SynkStartup.Driver("P417JI6", "evry123");
+                LoginToSynk login = new LoginToSynk();
                 login.Synklogin("197611040010");
             }
             [Test]
@@ -213,14 +213,14 @@ namespace SYNKproject1
             public void BuyFund()
             {
                 BuyFund buyFund = new BuyFund();
-                buyFund.Buyfund("110", "Privatkonto");
+                buyFund.Buyfund("109", "Privatkonto");
             }
             [Test]
             [Order(2)]
             public void SellFund()
             {
                 SellFund sellFund = new SellFund();
-                sellFund.Sellfund("100", "Privatkonto");
+                sellFund.Sellfund("107", "Privatkonto");
             }
             [Test]
             [Order(3)]
@@ -233,17 +233,15 @@ namespace SYNKproject1
             [Order(4)]
             public void SellShare()
             {
-
                 SellShare sellShare = new SellShare();
                 sellShare.Sellshare("327327-02453-2: Värdepapperstjänst Bas ISK", "ERICSSON B", "1");
-
             }
             [Test]
             [Order(5)]
             public void ChangeFund()
             {
                 ChangeFund changeFund = new ChangeFund();
-                changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Indexfond USA", "115");
+                changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Swedbank Robur Prem. Offensiv", "117");
             }
             [Test]
             [Order(6)]
@@ -255,7 +253,6 @@ namespace SYNKproject1
             [OneTimeTearDown]
             public void TearDown()
             {
-               
                 DriverQuit teardown = new DriverQuit();
                 teardown.Teardown();
                 Thread.Sleep(1000);
@@ -263,14 +260,14 @@ namespace SYNKproject1
 
         }
         [TestFixture]
-        [Order(5)]
+        [Order(6)]
         public class CreateAnAccount
         {
             [OneTimeSetUp]
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver();
+                SynkStartup.Driver("P417JI6", "evry123");
                 LoginToSynk login = new LoginToSynk();
                 login.Synklogin("196308120093");
             }
@@ -283,9 +280,9 @@ namespace SYNKproject1
             [OneTimeTearDown]
             public void TearDown()
             {
-               DriverQuit teardown = new DriverQuit();
-               teardown.Teardown();
-               Thread.Sleep(1000);
+                DriverQuit teardown = new DriverQuit();
+                teardown.Teardown();
+                Thread.Sleep(1000);
             }
         }
         [TestFixture]
@@ -296,7 +293,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver();       
+                SynkStartup.Driver("P417JI6", "evry123");
             }
             [Test]
             public void CustomerModule()
@@ -322,8 +319,26 @@ namespace SYNKproject1
                 FundAccountModule fundAccountModule = new FundAccountModule();
                 fundAccountModule.OpenFundModule("7 973 484-4");
             }
+            [OneTimeTearDown]
+            public void Teardown()
+            {
+                DriverQuit teardown = new DriverQuit();
+                teardown.Teardown();
+                Thread.Sleep(1000);
+            }
+        }
+        [TestFixture]
+        [Order(2)]
+        public class SynkOverview
+        {
+            [OneTimeSetUp]
+            public void InitialDriver()
+            {
+                Drivers SynkStartup = new Drivers();
+                SynkStartup.Driver("P417JI6", "evry123");
+            }
             [Test]
-            [Order(1)]
+
             public void LogInToCustomerByName()
             {
                 SearchCustomer searchCustomer = new SearchCustomer();
@@ -341,17 +356,24 @@ namespace SYNKproject1
                 CardConnectedToAccount cardConnectedToAccount = new CardConnectedToAccount();
                 cardConnectedToAccount.CardAccountConnection("8327-9, 04 100 883-0");
             }
+            [Test]
+            public void InterestOverview()
+            {
+                ShowInterest showInterest = new ShowInterest();
+                showInterest.Showinterest();
+            }
             [OneTimeTearDown]
             public void Teardown()
             {
-               DriverQuit teardown = new DriverQuit();
-               teardown.Teardown();
-               Thread.Sleep(1000);
+                DriverQuit teardown = new DriverQuit();
+                teardown.Teardown();
+                Thread.Sleep(1000);
             }
         }
 
     }
 }
+
 
        
 

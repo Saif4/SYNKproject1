@@ -115,11 +115,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SynkModules\CardConnectedToAccount.cs" />
-    <Compile Include="SynkModules\AccountOverview.cs" />
+    <Compile Include="SynkOverview\ShowInterest.cs" />
+    <Compile Include="SynkOverview\CardConnectedToAccount.cs" />
+    <Compile Include="SynkOverview\AccountOverview.cs" />
     <Compile Include="CashDesk\MultipleDeposits.cs" />
     <Compile Include="Funds\ChangeFund.cs" />
-    <Compile Include="SynkModules\SearchCustomer.cs" />
+    <Compile Include="SynkOverview\SearchCustomer.cs" />
     <Compile Include="SynkModules\FundAccountModule.cs" />
     <Compile Include="SynkModules\AccountModule.cs" />
     <Compile Include="SynkModules\CardModule.cs" />
@@ -140,7 +141,6 @@
     <Compile Include="CashDesk\CashDeskTransferCustomerIdentification.cs" />
     <Compile Include="CashDesk\CashDeskDeposit.cs" />
     <Compile Include="CashDesk\CashDeskTransferBack.cs" />
-    <Compile Include="Drivers\AMWaccess.cs" />
     <Compile Include="Basic.cs" />
     <Compile Include="CashDesk\CashDeskTransfer.cs" />
     <Compile Include="Drivers\DriverQuit.cs" />

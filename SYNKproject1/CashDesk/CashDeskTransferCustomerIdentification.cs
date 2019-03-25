@@ -22,11 +22,12 @@ namespace SYNKproject1
 
         public void OpenCashDeskAndTransferWithCustomerIdentification(string kundnummer, string belopp)
         {
+            // Anger en kundnummer
             Thread.Sleep(1000);
             CashDeskWindowSession.FindElementByAccessibilityId("FBSTCustomernumber").SendKeys(kundnummer);
             Thread.Sleep(1000);
 
-
+            // Går in i överförningsvyn och göra en överförning
             CashDeskWindowSession.FindElementByName("Transaktioner").Click();
             CashDeskWindowSession.FindElementByName("Transaktioner").SendKeys("Ö");
             Thread.Sleep(2000);
@@ -37,11 +38,15 @@ namespace SYNKproject1
             CashDeskWindowSession.FindElementByAccessibilityId("FBSMAmount").SendKeys(belopp);
             CashDeskWindowSession.FindElementByAccessibilityId("cmdAccept").Click();
 
+            // kollar att identifierings rutan dyker upp när man har gått över gränsen.
             CashDeskWindowSession.FindElementByAccessibilityId("frmAMLInfo").FindElementByAccessibilityId("chkSameAsCustomer").Click();
             CashDeskWindowSession.FindElementByAccessibilityId("cmdOK").Click();
 
+            // Kollar att transaktionen är synligt
             CashDeskWindowSession.FindElementByName("UT");
             CashDeskWindowSession.FindElementByName("IN");
+
+            // Avslutar transaktionen
             CashDeskWindowSession.FindElementByName("Arkiv").Click();
             CashDeskWindowSession.Keyboard.SendKeys(Keys.ArrowDown);
             CashDeskWindowSession.Keyboard.SendKeys(Keys.Enter);

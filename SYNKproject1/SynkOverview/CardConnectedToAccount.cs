@@ -38,12 +38,14 @@ namespace SYNKproject1
             var personnummer = SynkWindowSession.FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-3").GetAttribute("Name");
             SynkWindowSession.FindElementByAccessibilityId("ListViewSubItem-3").Click();
             SynkWindowSession.FindElementByName("Visa...").Click();
+            
 
             var personnummerInCardModule = RootSession.FindElementByAccessibilityId("txtKundnr").GetAttribute("Value.Value");
             var KontonummerInCardModule = RootSession.FindElementByAccessibilityId("txtKontoNummer").GetAttribute("Value.Value");
 
             Assert.AreEqual(personnummer, personnummerInCardModule);
             Assert.AreEqual(kontonummer, KontonummerInCardModule);
+            SynkWindowSession.FindElementByName("OK").Click();
         }
     }
 }

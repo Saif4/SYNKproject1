@@ -13,7 +13,6 @@ namespace SYNKproject1
             // Stänger Synk och tar bort sessionen.
             if (SYNKSession != null)
             {
-
                 SYNKSession.Quit();
                 SYNKSession = null;
             }
