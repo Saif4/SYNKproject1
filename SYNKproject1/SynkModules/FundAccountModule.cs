@@ -19,15 +19,13 @@ namespace SYNKproject1
             }
             public void OpenFundModule(string fondkontonummer)
             {
-                RootSession.FindElementByAccessibilityId("txtFondkontoNr").SendKeys(fondkontonummer);
-                RootSession.FindElementByName("Aktivera").Click();
-                RootSession.FindElementByAccessibilityId("frmFondKontoInfo").FindElementByAccessibilityId("cmdVisa").Click();
-
-                string fundaccount = RootSession.FindElementByAccessibilityId("frmFondoversikt").GetAttribute("Name");
-
-                Assert.IsNotEmpty(fundaccount);
-
-
+            // Verifierar att fond modalen öppnas
+            RootSession.FindElementByAccessibilityId("txtFondkontoNr").SendKeys(fondkontonummer);
+            RootSession.FindElementByName("Aktivera").Click();
+            RootSession.FindElementByAccessibilityId("frmFondKontoInfo").FindElementByAccessibilityId("cmdVisa").Click();
+            string fundaccount = RootSession.FindElementByAccessibilityId("frmFondoversikt").GetAttribute("Name");
+            Assert.IsNotEmpty(fundaccount);
+           
             }
         
     }

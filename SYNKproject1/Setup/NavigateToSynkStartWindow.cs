@@ -12,8 +12,6 @@ namespace SYNKproject1
 {
     public class NavigateToSynkStartWindow : DriversRoot
     {
-
-
         public WindowsDriver<WindowsElement> SynkWindowSession;
 
         public NavigateToSynkStartWindow()
@@ -22,7 +20,7 @@ namespace SYNKproject1
         }
         public void InitialSYNKStartWindow()
         {
-         // Skapar en session som länkas till Synk start-fönstret.
+            // Skapar en session som länkas till Synk start-fönstret.
             var synkStartWindow = RootSession.FindElementByAccessibilityId("Saljstöd");
             var synkStartWindowHandle = synkStartWindow.GetAttribute("NativeWindowHandle");
             synkStartWindowHandle = (int.Parse(synkStartWindowHandle)).ToString("x"); // Convert to Hex

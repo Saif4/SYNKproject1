@@ -14,7 +14,7 @@ namespace SYNKproject1
     public class LoginToSynk : DriversRoot
     {
         
-        public const string customer = "ÅkeMorrisplains.txt";
+       // public const string customer = "ÅkeMorrisplains.txt";
        
 
         public LoginToSynk()
@@ -23,20 +23,21 @@ namespace SYNKproject1
         }
         public void Synklogin(string kundnummer)
         {
-            StreamReader sr = new StreamReader(customer);
-            string customerAccount = sr.ReadLine();
-           
-             /* var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster").GetAttribute("NativeWindowHandle");//Saljstöd
-             synkStartWindow = (int.Parse(synkStartWindow)).ToString("x"); // Convert to Hex
+           // StreamReader sr = new StreamReader(customer);
+           // string customerAccount = sr.ReadLine();
 
-             // Create session by attaching to "SYNK - Startfönster" top level window
-             DesiredCapabilities synkAppCapabilities = new DesiredCapabilities();
-             synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindow);
-             SynkWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);
-             SynkWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));
-             
-             SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
-             SynkWindowSession.FindElementByName("Aktivera").Click();*/  // Loggar in på en kund
+            /* var synkStartWindow = RootSession.FindElementByName("SYNK - Startfönster").GetAttribute("NativeWindowHandle");//Saljstöd
+            synkStartWindow = (int.Parse(synkStartWindow)).ToString("x"); // Convert to Hex
+
+            // Create session by attaching to "SYNK - Startfönster" top level window
+            DesiredCapabilities synkAppCapabilities = new DesiredCapabilities();
+            synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindow);
+            SynkWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);
+            SynkWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));
+
+            SynkWindowSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
+            SynkWindowSession.FindElementByName("Aktivera").Click();*/  // Loggar in på en kund
+             // Loggar in på en kund
              RootSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
              RootSession.FindElementByName("Aktivera").Click(); 
         }

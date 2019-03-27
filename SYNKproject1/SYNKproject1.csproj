@@ -115,6 +115,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministratorAccess.cs" />
+    <Compile Include="SynkModules\AnotherWayToContent.cs" />
+    <Compile Include="SynkOverview\Content.cs" />
+    <Compile Include="SynkOverview\FinishedIPcontract.cs" />
     <Compile Include="SynkOverview\ShowInterest.cs" />
     <Compile Include="SynkOverview\CardConnectedToAccount.cs" />
     <Compile Include="SynkOverview\AccountOverview.cs" />

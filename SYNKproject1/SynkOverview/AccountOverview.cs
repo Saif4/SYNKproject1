@@ -20,13 +20,13 @@ namespace SYNKproject1
         }
         public void Accountoverview(string kundnummer)
         {
+            // Verifierar att konto översikten öppnas
             RootSession.FindElementByName("Kundnummer:").SendKeys(kundnummer);
             RootSession.FindElementByName("Visa").Click();
             RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
-
             string AccountOverviewWindow = RootSession.FindElementByAccessibilityId("frmKortView").GetAttribute("Name");
-
             Assert.IsNotEmpty(AccountOverviewWindow);
+            RootSession.FindElementByName("OK").Click();
         }
     }
 }

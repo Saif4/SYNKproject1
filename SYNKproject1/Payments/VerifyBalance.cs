@@ -40,31 +40,27 @@ namespace SYNKproject1
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindowHandle);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+
+            // Väljer ett konto
             var konto = CustomerFormWindowSession.FindElementByName("Privatkonto???????????????????????????????????");
             CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
             CustomerFormWindowSession.Mouse.ContextClick(konto.Coordinates);
             CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
-
+            // Kollar att ett felmeddelande från centrala systemet dyker upp
              if (CustomerFormWindowSession.PageSource.Contains("Meddelande från Centrala Systemet"))
              {
                 CustomerFormWindowSession.FindElementByName("No").Click();
              }
 
-           /* var kontoUtdrag = RootSession.FindElementByAccessibilityId("frmKontoUtdrag").GetAttribute("NativeWindowHandle");
-            kontoUtdrag = (int.Parse(kontoUtdrag)).ToString("X");
-
-            DesiredCapabilities kontoUtdragCapabilities = new DesiredCapabilities();
-            kontoUtdragCapabilities.SetCapability("appTopLevelWindow", kontoUtdrag);
-            kontoUtdragSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), kontoUtdragCapabilities);*/
+            // Hämtar ut nya saldot
             var Newsaldo = RootSession.FindElementByAccessibilityId("lvwSaldo").FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-2").GetAttribute("Name");
             Console.WriteLine("Nya Saldo:" + Newsaldo);
             Thread.Sleep(1000);
-          
+            
+            // Verifierar att nya saldot inte är samma saldo som det var innan betlaningen
             Assert.AreNotEqual(CheckBalance.Actualsaldo, Newsaldo);
             RootSession.FindElementByName("OK").Click();
-          
-
-
+         
         }
     }
 }

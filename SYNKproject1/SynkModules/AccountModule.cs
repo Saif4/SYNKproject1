@@ -19,14 +19,11 @@ namespace SYNKproject1
         }
         public void OpenAccountModule(string kontonummer)
         {
+            // Verifierar att konto modalen öppnas
             RootSession.FindElementByAccessibilityId("txtKontoNr").SendKeys(kontonummer);
             RootSession.FindElementByName("Aktivera").Click();
-
             string customerFormWindow = RootSession.FindElementByAccessibilityId("frmKonto").GetAttribute("Name");
-
             Assert.IsNotEmpty(customerFormWindow);
-
-
         }
 
     }

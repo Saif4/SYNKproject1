@@ -87,6 +87,7 @@ namespace SYNKproject1
                 
                 }
 
+            // Stänger fond fönstret
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("frmFaktablad").FindElementByAccessibilityId("cmdClose").Click();
         }

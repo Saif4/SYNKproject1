@@ -26,12 +26,12 @@ namespace SYNKproject1
             var synkStartWindowHandle = synkStartWindow.GetAttribute("NativeWindowHandle");
             synkStartWindowHandle = (int.Parse(synkStartWindowHandle)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "SYNK - Startfönster" top level window
             DesiredCapabilities synkAppCapabilities = new DesiredCapabilities();
             synkAppCapabilities.SetCapability("appTopLevelWindow", synkStartWindowHandle);
             CustomerModuleSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), synkAppCapabilities);
             CustomerModuleSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
 
+            // Söker en kund med namnet
             CustomerModuleSession.FindElementByName("Arkiv").Click();
             CustomerModuleSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowRight + Keys.Enter);
             CustomerModuleSession.FindElementByName("Efternamn/Företag:").SendKeys(kundnamn);

@@ -39,7 +39,7 @@ namespace SYNKproject1
             CustomerFormWindowSession.FindElementByName("Nytt Konto...").Click();
 
 
-            // Select "First option after sending {T} key in account list ("Transaktionskonto - TRP00303") (dirty solution)
+            // Välja typ av konto
             CustomerFormWindowSession.FindElementByAccessibilityId("cboChooseAccount").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cboChooseAccount").SendKeys("B");
             CustomerFormWindowSession.FindElementByName("OK").Click();

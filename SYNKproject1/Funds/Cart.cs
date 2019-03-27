@@ -23,14 +23,16 @@ namespace SYNKproject1
 
         public void Cartview()
         {
+            // Hittar varukorgen och länkar till den
             var varukorgenFormWindow = RootSession.FindElementByAccessibilityId("frmVarukorgen").GetAttribute("NativeWindowHandle");
             varukorgenFormWindow = (int.Parse(varukorgenFormWindow)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "Affärssammanställning" top level window
             DesiredCapabilities varukorgenFormAppCapabilities = new DesiredCapabilities();
             varukorgenFormAppCapabilities.SetCapability("appTopLevelWindow", varukorgenFormWindow);
             CartSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), varukorgenFormAppCapabilities);
             CartSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+
+            // Verställer alla köp och sälj av fonder och aktier 
             CartSession.FindElementByName("Verkställ").Click();
             CartSession.FindElementByName("Slutför med skriftligt godkännande").Click();
             CartSession.FindElementByName("OK").Click();

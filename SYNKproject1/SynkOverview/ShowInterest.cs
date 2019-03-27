@@ -21,12 +21,12 @@ namespace SYNKproject1
 
         public void Showinterest()
         {
+            // Verifierar att Ränta vyn öppnas
             RootSession.FindElementByName("Visa").Click();
             RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
             string InterestWindow = RootSession.FindElementByAccessibilityId("frmFastRänta").GetAttribute("Name");
             Assert.IsNotEmpty(InterestWindow);
-            RootSession.FindElementByName("OK").Click();
-            
+            RootSession.FindElementByName("OK").Click();         
         }
     }
 }

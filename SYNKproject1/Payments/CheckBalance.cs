@@ -48,6 +48,7 @@ namespace SYNKproject1
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindowHandle);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));*/
+            // Väljer ett konto
             var konto = RootSession.FindElementByName("Privatkonto???????????????????????????????????");
             RootSession.Mouse.ContextClick(konto.Coordinates);
             RootSession.FindElementByName("Visa produktinfo").Click();
@@ -59,15 +60,14 @@ namespace SYNKproject1
             DesiredCapabilities kontoUtdragCapabilities = new DesiredCapabilities();
             kontoUtdragCapabilities.SetCapability("appTopLevelWindow", kontoUtdrag);
             kontoUtdragSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), kontoUtdragCapabilities);*/
+            // Hittar saldot och kontonummer på den valda kontot och sparar dessa i variabler
             actualsaldo = RootSession.FindElementByAccessibilityId("txtSaldo").GetAttribute("Value.Value");
             kontoNr = RootSession.FindElementByAccessibilityId("txtKontonr").GetAttribute("Value.Value");
             Console.WriteLine("Nuvarande Saldo:" + actualsaldo);
             Console.WriteLine("Kontonummer:" + kontoNr);
             RootSession.FindElementByName("Arkiv").Click();
             RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
-         
-
-
+       
         }
     }
 }

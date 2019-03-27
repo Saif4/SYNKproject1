@@ -18,8 +18,8 @@ namespace SYNKproject1
         {
             Drivers SynkStartup = new Drivers();
             SynkStartup.Driver("P417JI6", "evry123");
-            ShowInterest showInterest = new ShowInterest();
-            showInterest.Showinterest();
+            AdministratorAccess administratorAccess = new AdministratorAccess();
+            administratorAccess.Administratoraccess("195306300368");
 
             //TestClass test = new TestClass();
             //test.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "1000");
@@ -56,7 +56,7 @@ namespace SYNKproject1
             public void MultipleDeposits()
             {
                 MultipleDeposits multipleDeposits = new MultipleDeposits();
-                multipleDeposits.MultipleDepoit("19530630-0368", "14 9020 274 717-6", "50", "8327-9, 904 368 271-6", "50");
+                multipleDeposits.MultipleDepoit("19530630-0368", "14 9020 274 717-6", "50", "8327-9, 904 368 271-6", "50", "Privatkonto");
             }
             [Test]
             public void Withdraw()
@@ -197,7 +197,7 @@ namespace SYNKproject1
         }
         [TestFixture]
         [Order(7)]
-        [Ignore("Ignore a fixture")]
+        //[Ignore("Ignore a fixture")]
         public class Funds
         {
             [OneTimeSetUp]
@@ -213,14 +213,14 @@ namespace SYNKproject1
             public void BuyFund()
             {
                 BuyFund buyFund = new BuyFund();
-                buyFund.Buyfund("109", "Privatkonto");
+                buyFund.Buyfund("105", "Privatkonto");
             }
             [Test]
             [Order(2)]
             public void SellFund()
             {
                 SellFund sellFund = new SellFund();
-                sellFund.Sellfund("107", "Privatkonto");
+                sellFund.Sellfund("103", "Privatkonto");
             }
             [Test]
             [Order(3)]
@@ -241,7 +241,7 @@ namespace SYNKproject1
             public void ChangeFund()
             {
                 ChangeFund changeFund = new ChangeFund();
-                changeFund.changefund("9 445 602-7 - Investeringssparkonto", "Swedbank Robur Prem. Offensiv", "117");
+                changeFund.Changefund("9 445 602-7 - Investeringssparkonto", "Swedbank Robur Prem. Offensiv", "108");
             }
             [Test]
             [Order(6)]
@@ -319,6 +319,13 @@ namespace SYNKproject1
                 FundAccountModule fundAccountModule = new FundAccountModule();
                 fundAccountModule.OpenFundModule("7 973 484-4");
             }
+            [Test]
+            [Order(1)]
+            public void ShowContent()
+            {
+                AnotherWayToContent content = new AnotherWayToContent();
+                content.ShowContent();
+            }
             [OneTimeTearDown]
             public void Teardown()
             {
@@ -361,6 +368,18 @@ namespace SYNKproject1
             {
                 ShowInterest showInterest = new ShowInterest();
                 showInterest.Showinterest();
+            }
+            [Test]
+            public void ShowFinishedIPcontract()
+            {
+                FinishedIPcontract finishedIPcontract = new FinishedIPcontract();
+                finishedIPcontract.FinishedIpcontract("83279, 9747310614");
+            }
+            [Test]
+            public void ShowContent()
+            {
+                Content content = new Content();
+                content.ShowContent();
             }
             [OneTimeTearDown]
             public void Teardown()

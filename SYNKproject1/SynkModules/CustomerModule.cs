@@ -20,15 +20,11 @@ namespace SYNKproject1
         }
         public void LoginTocustomer(string kundnummer)
         {
+            // Verifierar att kund modalen öppnas
             RootSession.FindElementByAccessibilityId("txtKundNr").SendKeys(kundnummer);
             RootSession.FindElementByName("Aktivera").Click();
-
             string customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("Name");
-
-
-            Console.WriteLine(customerFormWindow);
-
-
+            Assert.IsNotEmpty(customerFormWindow);
         }
 
     }

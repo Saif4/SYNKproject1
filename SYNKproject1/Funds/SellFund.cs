@@ -25,14 +25,16 @@ namespace SYNKproject1
 
         public void Sellfund(string belopp, string konto)
         {
+            // Hittar kund modalen och länkar till den
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
             customerFormWindow = (int.Parse(customerFormWindow)).ToString("x"); // Convert to Hex
 
-            // Create session by attaching to "Customer View" top level window
             DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindow);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+
+            // Går in i sälj fond modalen
             CustomerFormWindowSession.FindElementByName("Affärer").Click();
 
             WindowsElement fund = CustomerFormWindowSession.FindElementByName("Fonder");
@@ -42,51 +44,22 @@ namespace SYNKproject1
             CustomerFormWindowSession.Mouse.MouseMove(buy.Coordinates);
             CustomerFormWindowSession.Mouse.Click(null);
 
+            // Väljer ett konto som har fonder att sälja 
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdLiquidAccount").Click();
             CustomerFormWindowSession.FindElementByName(konto).Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();
 
-            /* UserListPage.initialiazeUserListPage();
-             WindowsElement  userListItem = CustomerFormWindowSession.FindElementByAccessibilityId("lvwFundPossess"); //if (userListItem.size() != 0)
-
-
-             List<WindowsElement> list = userListItem.fin (List<WindowsElement>)userListItem;
-                 if (list.Count() != 0)
-                 {
-                     for (int i = 0; i < list.Count(); i++)
-                     {
-                        // for (IWebElement e : userListItem.get(i).findElements(By.name("userName")))
-                        {
-                         Console.WriteLine(i); //System.out.println(e.getText());
-                         }
-                     }
-                 }
-                 else
-                 {
-                     Assert.Fail("Folder doesn't have any user.");
-                 }*/
-
+            // Väljer en fond ska säljas
             CustomerFormWindowSession.FindElementByAccessibilityId("ListViewItem-0").Click();
             var fundvalue = CustomerFormWindowSession.FindElementByAccessibilityId("ListViewItem-0").FindElementByAccessibilityId("ListViewSubItem-3").GetAttribute("Name");
             var fundvalueconverted = Convert.ToInt64(Convert.ToDouble(fundvalue));
             //Console.WriteLine(fundvalueconverted);
-            
+
+            // Väljer beloppet som ska säljas och slutföra processen 
             CustomerFormWindowSession.FindElementByAccessibilityId("txtAmountSell").SendKeys(belopp);
             CustomerFormWindowSession.FindElementByAccessibilityId("optRadgNej").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdSell").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
-
-           /* var varukorgenFormWindow = RootSession.FindElementByAccessibilityId("frmVarukorgen").GetAttribute("NativeWindowHandle");
-            varukorgenFormWindow = (int.Parse(varukorgenFormWindow)).ToString("x"); // Convert to Hex
-
-            // Create session by attaching to "Affärssammanställning" top level window
-            DesiredCapabilities varukorgenFormAppCapabilities = new DesiredCapabilities();
-            varukorgenFormAppCapabilities.SetCapability("appTopLevelWindow", varukorgenFormWindow);
-            VarukorgenFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), varukorgenFormAppCapabilities);
-            VarukorgenFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            VarukorgenFormWindowSession.FindElementByName("Verkställ").Click();
-            VarukorgenFormWindowSession.FindElementByName("Slutför med skriftligt godkännande").Click();
-            VarukorgenFormWindowSession.FindElementByName("OK").Click();*/
 
         }
     }

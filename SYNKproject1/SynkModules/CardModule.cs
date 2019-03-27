@@ -19,14 +19,11 @@ namespace SYNKproject1
         }
         public void OpenCardModule(string kortnummer)
         {
+            // Verifierar att kort modalen öppnas
             RootSession.FindElementByAccessibilityId("txtKortNr").SendKeys(kortnummer);
             RootSession.FindElementByName("Aktivera").Click();
-
             string cardWindow = RootSession.FindElementByAccessibilityId("frmKortViewer").GetAttribute("Name");
-
             Assert.IsNotEmpty(cardWindow);
-
-
         }
     }
 }

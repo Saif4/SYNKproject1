@@ -15,12 +15,7 @@ namespace SYNKproject1
     public class OpenCashDesk : DriversRoot
     {
         public static WindowsDriver<WindowsElement> CashDeskWindowSession;
-        public WindowsDriver<WindowsElement> SynkWindowSession;
-
-        public string GetAccountNr()
-        {
-            return CheckBalance.KontoNR;
-        }
+        
         public OpenCashDesk()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
@@ -28,14 +23,15 @@ namespace SYNKproject1
 
         public void CashDesk()
         {
+            // Komma in till kassan
             NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
             navigate.InitialSYNKStartWindow();
             navigate.SynkWindowSession.Keyboard.SendKeys(Keys.F2);
 
+            // Skapar en session som länkas till kassa fönstret.
             var CashDeskWindow = RootSession.FindElementByAccessibilityId("FrmTransaction").GetAttribute("NativeWindowHandle");
             CashDeskWindow = (int.Parse(CashDeskWindow)).ToString("x"); // Convert to Hex
 
-            // Skapar en session som länkas till kassa fönstret.
             DesiredCapabilities CashDeskAppCapabilities = new DesiredCapabilities();
             CashDeskAppCapabilities.SetCapability("appTopLevelWindow", CashDeskWindow);
             CashDeskWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), CashDeskAppCapabilities);
