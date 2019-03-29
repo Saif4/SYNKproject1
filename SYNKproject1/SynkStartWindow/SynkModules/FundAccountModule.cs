@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -25,8 +26,10 @@ namespace SYNKproject1
             RootSession.FindElementByAccessibilityId("frmFondKontoInfo").FindElementByAccessibilityId("cmdVisa").Click();
             string fundaccount = RootSession.FindElementByAccessibilityId("frmFondoversikt").GetAttribute("Name");
             Assert.IsNotEmpty(fundaccount);
-           
-            }
+            RootSession.FindElementByAccessibilityId("frmFondoversikt").FindElementByName("Arkiv").Click();
+            RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
+            RootSession.FindElementByName("Avbryt").Click();
+        }
         
     }
 }

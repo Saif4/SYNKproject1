@@ -115,20 +115,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdministratorAccess.cs" />
-    <Compile Include="SynkModules\AnotherWayToContent.cs" />
-    <Compile Include="SynkOverview\Content.cs" />
-    <Compile Include="SynkOverview\FinishedIPcontract.cs" />
-    <Compile Include="SynkOverview\ShowInterest.cs" />
-    <Compile Include="SynkOverview\CardConnectedToAccount.cs" />
-    <Compile Include="SynkOverview\AccountOverview.cs" />
+    <Compile Include="SynkStartWindow\About\ShowSYAFlags.cs" />
+    <Compile Include="SynkStartWindow\SynkOverview\InvestmentComparison.cs" />
+    <Compile Include="SynkStartWindow\About\ShowCashDeskData.cs" />
+    <Compile Include="SynkStartWindow\About\ShowOfficeData.cs" />
+    <Compile Include="SynkStartWindow\AdministratorStartUpPage\CustomerDataView.cs" />
+    <Compile Include="SynkStartWindow\AdministratorStartUpPage\EngagementView.cs" />
+    <Compile Include="SynkStartWindow\SynkModules\AnotherWayToShowHelpView.cs" />
+    <Compile Include="SynkStartWindow\SynkOverview\HelpView.cs" />
+    <Compile Include="SynkStartWindow\SynkOverview\FinishedIPcontract.cs" />
+    <Compile Include="SynkStartWindow\SynkOverview\ShowInterest.cs" />
+    <Compile Include="SynkStartWindow\SynkOverview\CardConnectedToAccount.cs" />
+    <Compile Include="SynkStartWindow\SynkOverview\AccountOverview.cs" />
     <Compile Include="CashDesk\MultipleDeposits.cs" />
     <Compile Include="Funds\ChangeFund.cs" />
-    <Compile Include="SynkOverview\SearchCustomer.cs" />
-    <Compile Include="SynkModules\FundAccountModule.cs" />
-    <Compile Include="SynkModules\AccountModule.cs" />
-    <Compile Include="SynkModules\CardModule.cs" />
-    <Compile Include="SynkModules\CustomerModule.cs" />
+    <Compile Include="SynkStartWindow\SynkOverview\SearchCustomer.cs" />
+    <Compile Include="SynkStartWindow\SynkModules\FundAccountModule.cs" />
+    <Compile Include="SynkStartWindow\SynkModules\AccountModule.cs" />
+    <Compile Include="SynkStartWindow\SynkModules\CardModule.cs" />
+    <Compile Include="SynkStartWindow\SynkModules\CustomerModule.cs" />
     <Compile Include="Funds\Cart.cs" />
     <Compile Include="Funds\BuyShare.cs" />
     <Compile Include="Funds\SellShare.cs" />

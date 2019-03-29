@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    class AnotherWayToContent : DriversRoot
+    class AnotherWayToShowHelpView : DriversRoot
     {
-        public AnotherWayToContent()
+        public AnotherWayToShowHelpView()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
-        public void ShowContent()
+        public void ShowHelp()
         {
             // öppnar Hjälp sidan och verifierar att den är synligt
             RootSession.FindElementByName("Kundnummer:").Click();

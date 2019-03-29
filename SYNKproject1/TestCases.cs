@@ -18,8 +18,8 @@ namespace SYNKproject1
         {
             Drivers SynkStartup = new Drivers();
             SynkStartup.Driver("P417JI6", "evry123");
-            AdministratorAccess administratorAccess = new AdministratorAccess();
-            administratorAccess.Administratoraccess("195306300368");
+            ShowSYAFlags showSYAFlags = new ShowSYAFlags();
+            showSYAFlags.ShowSyaFlags();
 
             //TestClass test = new TestClass();
             //test.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "1000");
@@ -314,6 +314,7 @@ namespace SYNKproject1
                 cardModule.OpenCardModule("5168 1501 0490 8371");
             }
             [Test]
+            [Order(4)]
             public void FundAccountModule()
             {
                 FundAccountModule fundAccountModule = new FundAccountModule();
@@ -321,10 +322,10 @@ namespace SYNKproject1
             }
             [Test]
             [Order(1)]
-            public void ShowContent()
+            public void HelpView()
             {
-                AnotherWayToContent content = new AnotherWayToContent();
-                content.ShowContent();
+                AnotherWayToShowHelpView helpView = new AnotherWayToShowHelpView();
+                helpView.ShowHelp();
             }
             [OneTimeTearDown]
             public void Teardown()
@@ -336,7 +337,7 @@ namespace SYNKproject1
         }
         [TestFixture]
         [Order(2)]
-        public class SynkOverview
+        public class SynkStartWindowOverview
         {
             [OneTimeSetUp]
             public void InitialDriver()
@@ -345,41 +346,74 @@ namespace SYNKproject1
                 SynkStartup.Driver("P417JI6", "evry123");
             }
             [Test]
-
+            [Order(5)]
             public void LogInToCustomerByName()
             {
                 SearchCustomer searchCustomer = new SearchCustomer();
                 searchCustomer.Searchcustomer("Plains");
             }
             [Test]
+            [Order(3)]
             public void AccountOverview()
             {
                 AccountOverview accountOverview = new AccountOverview();
                 accountOverview.Accountoverview("195306300368");
             }
             [Test]
+            [Order(4)]
             public void CardAndAccountConnection()
             {
                 CardConnectedToAccount cardConnectedToAccount = new CardConnectedToAccount();
                 cardConnectedToAccount.CardAccountConnection("8327-9, 04 100 883-0");
             }
             [Test]
+            [Order(6)]
             public void InterestOverview()
             {
                 ShowInterest showInterest = new ShowInterest();
                 showInterest.Showinterest();
             }
             [Test]
+            [Order(7)]
             public void ShowFinishedIPcontract()
             {
                 FinishedIPcontract finishedIPcontract = new FinishedIPcontract();
                 finishedIPcontract.FinishedIpcontract("83279, 9747310614");
             }
             [Test]
-            public void ShowContent()
+            [Order(10)]
+            public void HelpView()
             {
-                Content content = new Content();
-                content.ShowContent();
+                HelpView helpView = new HelpView();
+                helpView.ShowHelp();
+            }
+            [Test]
+            [Order(1)]
+            public void ShowOfficeData()
+            {
+                ShowOfficeData showOfficeData = new ShowOfficeData();
+                showOfficeData.Showofficedata();
+            }
+            [Test]
+            [Order(2)]
+            public void ShowCashDeskData()
+            {
+                ShowCashDeskData showCashDeskData = new ShowCashDeskData();
+                showCashDeskData.ShowcashdeskData();
+            }
+            [Test]
+            [Order(8)]
+            public void InvestmentComparison()
+            {
+                InvestmentComparison investmentComparison = new InvestmentComparison();
+                investmentComparison.InvestmentComparisonView();
+            }
+            [Test]
+            [Order(9)]
+            public void ShowSYAFlags()
+            {
+                ShowSYAFlags showSYAFlags = new ShowSYAFlags();
+                showSYAFlags.ShowSyaFlags();
             }
             [OneTimeTearDown]
             public void Teardown()
@@ -389,7 +423,38 @@ namespace SYNKproject1
                 Thread.Sleep(1000);
             }
         }
-
+        [TestFixture]
+        [Order(1)]
+        public class AdministratorStartUpPage
+        {
+            [OneTimeSetUp]
+            public void InitialDriver()
+            {
+                Drivers SynkStartup = new Drivers();
+                SynkStartup.Driver("P417JI6", "evry123");
+            }
+            [Test]
+            public void CustomerDataView()
+            {
+                CustomerDataView customerDataView = new CustomerDataView();
+                customerDataView.SelectStartupPage("Kunduppgifter");
+                customerDataView.VerifySelectedPage("195306300368");
+            }
+            [Test]
+            public void EngagementView()
+            {
+                EngagementView engagementView = new EngagementView();
+                engagementView.SelectStartupPage("Engagemang");
+                engagementView.VerifySelectedPage("195306300368");
+            }
+            [OneTimeTearDown]
+            public void Teardown()
+            {
+                DriverQuit teardown = new DriverQuit();
+                teardown.Teardown();
+                Thread.Sleep(1000);
+            }
+        }
     }
 }
 
