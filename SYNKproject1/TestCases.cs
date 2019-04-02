@@ -18,8 +18,11 @@ namespace SYNKproject1
         {
             Drivers SynkStartup = new Drivers();
             SynkStartup.Driver("P417JI6", "evry123");
-            ShowSYAFlags showSYAFlags = new ShowSYAFlags();
-            showSYAFlags.ShowSyaFlags();
+            LoginToSynk synkStartWindowLogin = new LoginToSynk();
+            synkStartWindowLogin.Synklogin("195306300368");
+            NewPensionSaving newPensionSaving = new NewPensionSaving();
+            newPensionSaving.CreatePensionSaving();
+          
 
             //TestClass test = new TestClass();
             //test.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "1000");
@@ -261,7 +264,7 @@ namespace SYNKproject1
         }
         [TestFixture]
         [Order(6)]
-        public class CreateAnAccount
+        public class CustomerStartWindow
         {
             [OneTimeSetUp]
             public void InitialDriver()
@@ -276,6 +279,26 @@ namespace SYNKproject1
             {
                 CreateAccount create = new CreateAccount();
                 create.OpenAccount();
+            }
+            [Test]
+            public void CreatePensionSavings()
+            {
+                NewPensionSaving newPensionSaving = new NewPensionSaving();
+                newPensionSaving.CreatePensionSaving();
+            }
+            [Test]
+            public void AndAndRemoveNotes()
+            {
+                AddAndRemoveNotes addAndRemoveNotes = new AddAndRemoveNotes();
+                addAndRemoveNotes.AddNote();
+                addAndRemoveNotes.Removenote();
+            }
+            [Test]
+            public void Help()
+            {
+                Help help = new Help();
+                help.OpenContentView();
+                help.OpenAboutView();
             }
             [OneTimeTearDown]
             public void TearDown()

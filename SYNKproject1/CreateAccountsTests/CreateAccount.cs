@@ -27,12 +27,11 @@ namespace SYNKproject1
         public void OpenAccount()
         {      
             // Hittar kund modalen och länkar till den 
-            var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView");
-            var customerFormWindowHandle = customerFormWindow.GetAttribute("NativeWindowHandle");
-            customerFormWindowHandle = (int.Parse(customerFormWindowHandle)).ToString("x"); // Convert to Hex
+            var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
+            customerFormWindow = (int.Parse(customerFormWindow)).ToString("x"); // Convert to Hex
 
             DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
-            customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindowHandle);
+            customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindow);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             CustomerFormWindowSession.FindElementByName("Affärer").Click();

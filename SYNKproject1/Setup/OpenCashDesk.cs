@@ -21,11 +21,12 @@ namespace SYNKproject1
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
 
+
         public void CashDesk()
         {
             // Komma in till kassan
             NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
-            navigate.InitialSYNKStartWindow();
+            navigate.InitialSYNKStartWindow();    
             navigate.SynkWindowSession.Keyboard.SendKeys(Keys.F2);
 
             // Skapar en session som länkas till kassa fönstret.

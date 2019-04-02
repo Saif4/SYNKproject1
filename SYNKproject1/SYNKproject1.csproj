@@ -115,10 +115,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SynkStartWindow\About\ShowSYAFlags.cs" />
+    <Compile Include="AddAndRemoveNotes.cs" />
+    <Compile Include="Help.cs" />
+    <Compile Include="NewPensionSaving.cs" />
+    <Compile Include="SynkStartWindow\AdministratorStartUpPage\About\ShowSYAFlags.cs" />
     <Compile Include="SynkStartWindow\SynkOverview\InvestmentComparison.cs" />
-    <Compile Include="SynkStartWindow\About\ShowCashDeskData.cs" />
-    <Compile Include="SynkStartWindow\About\ShowOfficeData.cs" />
+    <Compile Include="SynkStartWindow\AdministratorStartUpPage\About\ShowCashDeskData.cs" />
+    <Compile Include="SynkStartWindow\AdministratorStartUpPage\About\ShowOfficeData.cs" />
     <Compile Include="SynkStartWindow\AdministratorStartUpPage\CustomerDataView.cs" />
     <Compile Include="SynkStartWindow\AdministratorStartUpPage\EngagementView.cs" />
     <Compile Include="SynkStartWindow\SynkModules\AnotherWayToShowHelpView.cs" />
