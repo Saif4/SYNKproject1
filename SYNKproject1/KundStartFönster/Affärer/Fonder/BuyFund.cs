@@ -50,10 +50,6 @@ namespace SYNKproject1
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdFondTorget").Click();
 
-            /* WindowsElement text = CustomerFormWindowSession.FindElementByXPath("//*[contains(@LocalizedControlType,'text')]");
-             CustomerFormWindowSession.Mouse.MouseMove(text.Coordinates);
-             CustomerFormWindowSession.Mouse.Click(null);
-             //CustomerFormWindowSession.FindElementByTagName("text").Click();*/
             //Hitta en fond
             CustomerFormWindowSession.FindElementByXPath("//*[contains(@LocalizedControlType,'check box')]").Click();
             CustomerFormWindowSession.FindElementByName("OK").Click();

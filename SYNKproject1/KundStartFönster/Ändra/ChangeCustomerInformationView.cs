@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +9,10 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class Help : DriversRoot
+    public class ChangeCustomerInformationView : DriversRoot
     {
-        public static WindowsDriver<WindowsElement> CustomerFormWindowSession;
-        public Help()
-        {
-            PageFactory.InitElements(DriversRoot.RootSession , this);
-        }
-        public void OpenContentView()
+        public WindowsDriver<WindowsElement> CustomerFormWindowSession;
+        public void CustomerInfoWindow()
         {
             // Hittar kund modalen och länkar till den 
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
@@ -28,15 +23,11 @@ namespace SYNKproject1
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
 
-            CustomerFormWindowSession.FindElementByName("Hjälp").Click();
+            // Går in på ändra kunduppgifter
+            CustomerFormWindowSession.FindElementByName("Ändra").Click();
             CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
-            var helpPage = RootSession.FindElementByName("Direkthjälp Synk - Säljstöd och Kundstöd").Displayed;
-        }
-        public void OpenAboutView()
-        {
-            CustomerFormWindowSession.FindElementByName("Hjälp").Click();
-            CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
-            var aboutPage = CustomerFormWindowSession.FindElementByName("Om KUNDmodulen").Displayed;
+            var CustomerInformationWindow = CustomerFormWindowSession.FindElementByAccessibilityId("frmÄndraKundUppgifter").Displayed;
+            CustomerFormWindowSession.FindElementByName("OK").Click();
         }
     }
 }

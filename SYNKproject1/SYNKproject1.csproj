@@ -115,58 +115,71 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAndRemoveNotes.cs" />
-    <Compile Include="Help.cs" />
-    <Compile Include="NewPensionSaving.cs" />
-    <Compile Include="SynkStartWindow\AdministratorStartUpPage\About\ShowSYAFlags.cs" />
-    <Compile Include="SynkStartWindow\SynkOverview\InvestmentComparison.cs" />
-    <Compile Include="SynkStartWindow\AdministratorStartUpPage\About\ShowCashDeskData.cs" />
-    <Compile Include="SynkStartWindow\AdministratorStartUpPage\About\ShowOfficeData.cs" />
-    <Compile Include="SynkStartWindow\AdministratorStartUpPage\CustomerDataView.cs" />
-    <Compile Include="SynkStartWindow\AdministratorStartUpPage\EngagementView.cs" />
-    <Compile Include="SynkStartWindow\SynkModules\AnotherWayToShowHelpView.cs" />
-    <Compile Include="SynkStartWindow\SynkOverview\HelpView.cs" />
-    <Compile Include="SynkStartWindow\SynkOverview\FinishedIPcontract.cs" />
-    <Compile Include="SynkStartWindow\SynkOverview\ShowInterest.cs" />
-    <Compile Include="SynkStartWindow\SynkOverview\CardConnectedToAccount.cs" />
-    <Compile Include="SynkStartWindow\SynkOverview\AccountOverview.cs" />
-    <Compile Include="CashDesk\MultipleDeposits.cs" />
-    <Compile Include="Funds\ChangeFund.cs" />
-    <Compile Include="SynkStartWindow\SynkOverview\SearchCustomer.cs" />
-    <Compile Include="SynkStartWindow\SynkModules\FundAccountModule.cs" />
-    <Compile Include="SynkStartWindow\SynkModules\AccountModule.cs" />
-    <Compile Include="SynkStartWindow\SynkModules\CardModule.cs" />
-    <Compile Include="SynkStartWindow\SynkModules\CustomerModule.cs" />
-    <Compile Include="Funds\Cart.cs" />
-    <Compile Include="Funds\BuyShare.cs" />
-    <Compile Include="Funds\SellShare.cs" />
+    <Compile Include="CustomerStartWindow.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\BuyFundOnDifferentDate.cs" />
+    <Compile Include="KundStartFönster\Ändra\ChangeCustomerInformationView.cs" />
+    <Compile Include="KundStartFönster\Affärer\CreateFundAccount.cs" />
+    <Compile Include="KundStartFönster\Lägg till\AddAndRemoveNotes.cs" />
+    <Compile Include="KundStartFönster\Hjälp\Help.cs" />
+    <Compile Include="KundStartFönster\Affärer\NewPensionSaving.cs" />
+    <Compile Include="KundStartFönster\Affärer\ViewPrintoutOfShares.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\SellFundOnDifferentDate.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\ShowCompanyConnection.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\ShowAddressManagement.cs" />
+    <Compile Include="MeetingManagement.cs" />
+    <Compile Include="MeetingManagementCompanies.cs" />
+    <Compile Include="ShowFundAccount.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\ShowTransfers.cs" />
+    <Compile Include="SynkStartFönster\Om\ShowSYAFlags.cs" />
+    <Compile Include="SynkStartFönster\Verktyg\InvestmentComparison.cs" />
+    <Compile Include="SynkStartFönster\Om\ShowCashDeskData.cs" />
+    <Compile Include="SynkStartFönster\Om\ShowOfficeData.cs" />
+    <Compile Include="SynkStartFönster\Verktyg\ÄndraHandläggaruppgifter\CustomerDataView.cs" />
+    <Compile Include="SynkStartFönster\Verktyg\ÄndraHandläggaruppgifter\EngagementView.cs" />
+    <Compile Include="SynkStartFönster\SynkModaler\AnotherWayToShowHelpView.cs" />
+    <Compile Include="SynkStartFönster\Hjälp\HelpView.cs" />
+    <Compile Include="SynkStartFönster\Visa\FinishedIPcontract.cs" />
+    <Compile Include="SynkStartFönster\Visa\ShowInterest.cs" />
+    <Compile Include="SynkStartFönster\Visa\CardConnectedToAccount.cs" />
+    <Compile Include="SynkStartFönster\Visa\AccountOverview.cs" />
+    <Compile Include="Kassa\MultipleDeposits.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\ChangeFund.cs" />
+    <Compile Include="SynkStartFönster\Arkiv\SearchCustomer.cs" />
+    <Compile Include="SynkStartFönster\SynkModaler\FundAccountModule.cs" />
+    <Compile Include="SynkStartFönster\SynkModaler\AccountModule.cs" />
+    <Compile Include="SynkStartFönster\SynkModaler\CardModule.cs" />
+    <Compile Include="SynkStartFönster\SynkModaler\CustomerModule.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\Cart.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\BuyShare.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\SellShare.cs" />
     <Compile Include="Setup\CloseCashDesk.cs" />
-    <Compile Include="Funds\SellFund.cs" />
-    <Compile Include="Funds\BuyFund.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\SellFund.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\BuyFund.cs" />
     <Compile Include="Setup\OpenCashDesk.cs" />
-    <Compile Include="Payments\ChangePayment.cs" />
-    <Compile Include="Payments\PaymentVerifications.cs" />
-    <Compile Include="Payments\BGandPGpayment.cs" />
-    <Compile Include="CashDesk\CashDeskTransferDifferentBank.cs" />
-    <Compile Include="CashDesk\CashDeskWithdrawAboveLimit.cs" />
-    <Compile Include="CashDesk\CashDeskDepositAboveLimit.cs" />
-    <Compile Include="CashDesk\CashDeskTransferCustomerIdentification.cs" />
-    <Compile Include="CashDesk\CashDeskDeposit.cs" />
-    <Compile Include="CashDesk\CashDeskTransferBack.cs" />
+    <Compile Include="Betalningar\ChangePayment.cs" />
+    <Compile Include="Betalningar\PaymentVerifications.cs" />
+    <Compile Include="Betalningar\BGandPGpayment.cs" />
+    <Compile Include="Kassa\CashDeskTransferDifferentBank.cs" />
+    <Compile Include="Kassa\CashDeskWithdrawAboveLimit.cs" />
+    <Compile Include="Kassa\CashDeskDepositAboveLimit.cs" />
+    <Compile Include="Kassa\CashDeskTransferCustomerIdentification.cs" />
+    <Compile Include="Kassa\CashDeskDeposit.cs" />
+    <Compile Include="Kassa\CashDeskTransferBack.cs" />
     <Compile Include="Basic.cs" />
-    <Compile Include="CashDesk\CashDeskTransfer.cs" />
+    <Compile Include="Kassa\CashDeskTransfer.cs" />
     <Compile Include="Drivers\DriverQuit.cs" />
     <Compile Include="Drivers\Drivers.cs" />
     <Compile Include="Drivers\DriversRoot.cs" />
     <Compile Include="Setup\NavigateToSynkStartWindow.cs" />
-    <Compile Include="CashDesk\CashDeskWithdraw.cs" />
-    <Compile Include="CreateAccountsTests\CreateAccount.cs" />
+    <Compile Include="Kassa\CashDeskWithdraw.cs" />
+    <Compile Include="KundStartFönster\Affärer\CreateAccount.cs" />
     <Compile Include="TestCases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\LoginToSynk.cs" />
     <Compile Include="TestClass.cs" />
-    <Compile Include="Payments\VerifyBalance.cs" />
-    <Compile Include="Payments\CheckBalance.cs" />
+    <Compile Include="Betalningar\VerifyBalance.cs" />
+    <Compile Include="Betalningar\CheckBalance.cs" />
+    <Compile Include="KundStartFönster\Affärer\ViewSPAXPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -187,7 +200,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="KundStartFönster\Arkiv\" />
+    <Folder Include="KundStartFönster\Ta bort\" />
+    <Folder Include="KundStartFönster\Visa produktinfo\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

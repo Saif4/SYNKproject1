@@ -1,24 +1,18 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class NewPensionSaving : DriversRoot
+    public class ShowTransfers : DriversRoot
     {
         public WindowsDriver<WindowsElement> CustomerFormWindowSession;
-        public NewPensionSaving()
-        {
-            PageFactory.InitElements(DriversRoot.RootSession, this);
-        }
-        public void CreatePensionSaving()
+        public void ShowCustomerTransfers()
         {
             // Hittar kund modalen och länkar till den 
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
@@ -28,16 +22,17 @@ namespace SYNKproject1
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindow);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
             CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            CustomerFormWindowSession.FindElementByName("Affärer").Click();
-            CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowUp + Keys.ArrowUp + Keys.ArrowUp + Keys.Enter);
 
-            string kontonummer = CustomerFormWindowSession.FindElementByAccessibilityId("txtAccountNumber").Text;
-            CustomerFormWindowSession.FindElementByName("Inget förordnande").Click();
-            RootSession.FindElementByName("OK").Click();
+            // Går in på Överföringar
+            CustomerFormWindowSession.FindElementByName("Visa kundinfo").Click();
+            WindowsElement click = CustomerFormWindowSession.FindElementByName("Överföringar...");
+            CustomerFormWindowSession.Mouse.MouseMove(click.Coordinates);
+            CustomerFormWindowSession.Mouse.Click(null);
 
-            RootSession.FindElementByAccessibilityId("frmVarukorgen").FindElementByName("Verkställ").Click();
-            RootSession.FindElementByName("OK").Click();
-            Thread.Sleep(30000);
+            // Verifierar att sidan öppnas
+            var transferWindow = RootSession.FindElementByAccessibilityId("FrmVisaÖverföringar").Displayed;
+            RootSession.FindElementByAccessibilityId("FrmVisaÖverföringar").FindElementByName("Arkiv").Click();
+            RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
         }
     }
 }

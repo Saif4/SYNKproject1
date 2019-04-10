@@ -35,8 +35,8 @@ namespace SYNKproject1
                 RootSession.Mouse.DoubleClick(null);
                 RootSession.FindElementByName("Påloggning på Centrala Systemet");
                 RootSession.FindElementByAccessibilityId("304").Clear();
-                RootSession.FindElementByAccessibilityId("304").SendKeys("P417JI6");
-                RootSession.FindElementByAccessibilityId("305").SendKeys("evry123");
+                RootSession.FindElementByAccessibilityId("304").SendKeys(AMWusername);
+                RootSession.FindElementByAccessibilityId("305").SendKeys(AMWpassword);
                 RootSession.FindElementByName("Logga på").Click();
             }
             catch (Exception)

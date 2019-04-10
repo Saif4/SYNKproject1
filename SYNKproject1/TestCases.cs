@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using IgnoreAttribute = NUnit.Framework.IgnoreAttribute;
+using TestContext = NUnit.Framework.TestContext;
 
 namespace SYNKproject1
 {
@@ -19,13 +21,23 @@ namespace SYNKproject1
             Drivers SynkStartup = new Drivers();
             SynkStartup.Driver("P417JI6", "evry123");
             LoginToSynk synkStartWindowLogin = new LoginToSynk();
-            synkStartWindowLogin.Synklogin("195306300368");
-            NewPensionSaving newPensionSaving = new NewPensionSaving();
-            newPensionSaving.CreatePensionSaving();
-          
+            synkStartWindowLogin.Synklogin("197611040010");
 
-            //TestClass test = new TestClass();
-            //test.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "1000");
+            MeetingManagementPrivateCustomer meetingManagement = new MeetingManagementPrivateCustomer();
+            meetingManagement.NextMeeting("20201231", "1500", "Notering till nästa mötet", "Stockholm");
+            meetingManagement.RejectedMeeting("20190401", "Gamla mötet", "20200101", "Nya mötet");
+            meetingManagement.AddNotice("Notering till nästa mötet");
+
+            MeetingManagementCompanies meetingManagementCompanies = new MeetingManagementCompanies();
+            meetingManagementCompanies.NextMeeting("20201231", "1500", "Notering till nästa mötet", "Stockholm");
+            meetingManagementCompanies.RejectedMeeting("20190401", "Gamla mötet", "20200101", "Nya mötet");
+            meetingManagementCompanies.AddNotice("En ny notering");
+          /*  ShowTransfers showTransfers = new ShowTransfers();
+            showTransfers.ShowCustomerTransfers();
+            ShowAddressManagement showAddressManagement = new ShowAddressManagement();
+            showAddressManagement.ShowCustomerAddressManagement();*/
+        
+           
 
         }
 
@@ -73,8 +85,17 @@ namespace SYNKproject1
                 CashDeskWithdrawAboveLimit cashDeskWithdrawAboveLimit = new CashDeskWithdrawAboveLimit();
                 cashDeskWithdrawAboveLimit.WithdrawAboveLimit("19530630-0368", "Privatkonto", "10000");
             }
+            [TearDown]
+            public void TearDownIfTestFails()
+            {
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    DriverQuit teardown = new DriverQuit();
+                    teardown.Teardown();
+                    Thread.Sleep(1000);
+                }
+            }
             [OneTimeTearDown]
-
             public void TearDown()
             {
                 CloseCashDesk closedesk = new CloseCashDesk();
@@ -87,6 +108,7 @@ namespace SYNKproject1
         }
         [TestFixture]
         [Order(4)]
+        [Ignore("Ignore a fixture")]
         public class TransferTests
         {
             [OneTimeSetUp]
@@ -105,7 +127,6 @@ namespace SYNKproject1
             {
                 CashDeskTransfer cashDeskTransfer = new CashDeskTransfer();
                 cashDeskTransfer.OpenCashDeskAndTransfer("19530630-0368", "500");
-
             }
             [Test]
             [Order(2)]
@@ -125,10 +146,8 @@ namespace SYNKproject1
             [Order(4)]
             public void TransferToDifferentBank()
             {
-
                 CashDeskTransferDifferentBank cashDeskTransfer = new CashDeskTransferDifferentBank();
                 cashDeskTransfer.TransferToDifferentBank("195306300368", "14 9020 274 717-6", "500");
-
             }
             [Test]
             public void TransferWithinSameBankWithVerification()
@@ -136,6 +155,16 @@ namespace SYNKproject1
                 CashDeskTransfer cashDeskTransfer = new CashDeskTransfer();
                 cashDeskTransfer.OpenCashDeskAndTransfer("19530630-0368", "500");
 
+            }
+            [TearDown]
+            public void TearDownIfTestFails()
+            {
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    DriverQuit teardown = new DriverQuit();
+                    teardown.Teardown();
+                    Thread.Sleep(1000);
+                }
             }
             [OneTimeTearDown]
             public void TearDown()
@@ -186,7 +215,16 @@ namespace SYNKproject1
                 ChangePayment payment = new ChangePayment();
                 payment.BgAndPGpayment("195306300368", "100", "5175-4158", "7904130361");
             }
-
+            [TearDown]
+            public void TearDownIfTestFails()
+            {
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    DriverQuit teardown = new DriverQuit();
+                    teardown.Teardown();
+                    Thread.Sleep(1000);
+                }
+            }
             [OneTimeTearDown]
             public void TearDown()
             {
@@ -253,6 +291,28 @@ namespace SYNKproject1
                 Cart cart = new Cart();
                 cart.Cartview();
             }
+            [Test]
+            public void BuyFundOnDifferentDate()
+            {
+                BuyFundOnDifferentDate buyFundOnDifferentDate = new BuyFundOnDifferentDate();
+                buyFundOnDifferentDate.BuyFund("115", "Privatkonto", "20190401");
+            }
+            [Test]
+            public void SellFundOnDifferentDate()
+            {
+                SellFundOnDifferentDate sellFundOnDifferentDate = new SellFundOnDifferentDate();
+                sellFundOnDifferentDate.Sellfund("110", "Privatkonto", "20190401");
+            }
+            [TearDown]
+            public void TearDownIfTestFails()
+            {
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    DriverQuit teardown = new DriverQuit();
+                    teardown.Teardown();
+                    Thread.Sleep(1000);
+                }
+            }
             [OneTimeTearDown]
             public void TearDown()
             {
@@ -266,13 +326,21 @@ namespace SYNKproject1
         [Order(6)]
         public class CustomerStartWindow
         {
-            [OneTimeSetUp]
+           /* [OneTimeSetUp]
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver("P417JI6", "evry123");
                 LoginToSynk login = new LoginToSynk();
                 login.Synklogin("196308120093");
+            }*/
+            [OneTimeSetUp]
+            public void SetupIfTestFails()
+            {
+                Drivers SynkStartup = new Drivers();
+                SynkStartup.Driver("P417JI6", "evry123");
+                LoginToSynk login = new LoginToSynk();
+                login.Synklogin("196308120093");       
             }
             [Test]
             public void CreateNewAccount()
@@ -300,6 +368,46 @@ namespace SYNKproject1
                 help.OpenContentView();
                 help.OpenAboutView();
             }
+            [Test]
+            public void OpenPrintoutPageForShares()
+            {
+                ViewPrintoutOfShares printoutOfShares = new ViewPrintoutOfShares();
+                printoutOfShares.OpenPrintoutPageForShares();
+            }
+            [Test]
+            public void OpenSPAXPage()
+            {
+                ViewSPAXPage viewSPAXPage = new ViewSPAXPage();
+                viewSPAXPage.OpenSPAXpage();
+            }
+            [Test]
+            public void CreateNewFundAccount()
+            {
+                CreateFundAccount createFundAccount = new CreateFundAccount();
+                createFundAccount.CreateNewFundAccount();
+            }
+            [Test]
+            public void ChangeCustomerInformationView()
+            {
+                ChangeCustomerInformationView changeCustomerInformationView = new ChangeCustomerInformationView();
+                changeCustomerInformationView.CustomerInfoWindow();
+            }
+            [Test]
+            public void ShowCompanyConnection()
+            {
+                ShowCompanyConnection showCompanyConnection = new ShowCompanyConnection();
+                showCompanyConnection.ShowCompanyconnection();
+            }
+            [TearDown]
+             public void TearDownIfTestFails()
+             {
+                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                 {
+                     DriverQuit teardown = new DriverQuit();
+                     teardown.Teardown();
+                     Thread.Sleep(1000);
+                 }
+             }
             [OneTimeTearDown]
             public void TearDown()
             {
@@ -350,6 +458,16 @@ namespace SYNKproject1
                 AnotherWayToShowHelpView helpView = new AnotherWayToShowHelpView();
                 helpView.ShowHelp();
             }
+            [TearDown]
+            public void TearDownIfTestFails()
+            {
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    DriverQuit teardown = new DriverQuit();
+                    teardown.Teardown();
+                    Thread.Sleep(1000);
+                }
+            }
             [OneTimeTearDown]
             public void Teardown()
             {
@@ -363,7 +481,7 @@ namespace SYNKproject1
         public class SynkStartWindowOverview
         {
             [OneTimeSetUp]
-            public void InitialDriver()
+            public void Setup()
             {
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver("P417JI6", "evry123");
@@ -438,6 +556,16 @@ namespace SYNKproject1
                 ShowSYAFlags showSYAFlags = new ShowSYAFlags();
                 showSYAFlags.ShowSyaFlags();
             }
+            [TearDown]
+            public void TearDownIfTestFails()
+            {
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    DriverQuit teardown = new DriverQuit();
+                    teardown.Teardown();
+                    Thread.Sleep(1000);
+                }
+            }
             [OneTimeTearDown]
             public void Teardown()
             {
@@ -469,6 +597,16 @@ namespace SYNKproject1
                 EngagementView engagementView = new EngagementView();
                 engagementView.SelectStartupPage("Engagemang");
                 engagementView.VerifySelectedPage("195306300368");
+            }
+            [TearDown]
+            public void TearDownIfTestFails()
+            {
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    DriverQuit teardown = new DriverQuit();
+                    teardown.Teardown();
+                    Thread.Sleep(1000);
+                }
             }
             [OneTimeTearDown]
             public void Teardown()

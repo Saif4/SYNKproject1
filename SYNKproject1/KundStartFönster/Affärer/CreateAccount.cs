@@ -50,15 +50,7 @@ namespace SYNKproject1
             CustomerFormWindowSession.FindElementByName("OK").Click();
 
             // Hittar "Affärssammanställning"
-           /* var varukorgenFormWindow = RootSession.FindElementByAccessibilityId("frmVarukorgen");
-            var varukorgenFormWindowHandle = varukorgenFormWindow.GetAttribute("NativeWindowHandle");
-            varukorgenFormWindowHandle = (int.Parse(varukorgenFormWindowHandle)).ToString("x"); // Convert to Hex
-
-            // Create session by attaching to "Affärssammanställning" top level window
-            DesiredCapabilities varukorgenFormAppCapabilities = new DesiredCapabilities();
-            varukorgenFormAppCapabilities.SetCapability("appTopLevelWindow", varukorgenFormWindowHandle);
-            VarukorgenFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), varukorgenFormAppCapabilities);
-            VarukorgenFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1.5));*/
+          
             RootSession.FindElementByName("Verkställ").Click();
             RootSession.FindElementByName("Slutför med skriftligt godkännande").Click();
             RootSession.FindElementByName("OK").Click();
