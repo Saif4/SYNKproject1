@@ -115,7 +115,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerStartWindow.cs" />
+    <Compile Include="Advise.cs" />
+    <Compile Include="Drivers\AMW.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CustomerProfile.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CustomerRelation.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CustomerStructure.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CompilationDepositWithdraw.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\FinishedAccountLoanAndInsurance.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\FinishedCardAndCredit.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\AccountOverviewCustomerWindow.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CardConnectedToAccountCustomerWindow.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CardPicture.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CustomerBehavior.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\CustomerDebit.cs" />
+    <Compile Include="KundStartFönster\Affärer\CreateCompanyAccount.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\PricePictureCompany.cs" />
+    <Compile Include="TestCases.cs" />
     <Compile Include="KundStartFönster\Affärer\Fonder\BuyFundOnDifferentDate.cs" />
     <Compile Include="KundStartFönster\Ändra\ChangeCustomerInformationView.cs" />
     <Compile Include="KundStartFönster\Affärer\CreateFundAccount.cs" />
@@ -126,8 +141,8 @@
     <Compile Include="KundStartFönster\Affärer\Fonder\SellFundOnDifferentDate.cs" />
     <Compile Include="KundStartFönster\Visa kundinfo\ShowCompanyConnection.cs" />
     <Compile Include="KundStartFönster\Visa kundinfo\ShowAddressManagement.cs" />
-    <Compile Include="MeetingManagement.cs" />
-    <Compile Include="MeetingManagementCompanies.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\MeetingManagementPrivate.cs" />
+    <Compile Include="KundStartFönster\Visa kundinfo\MeetingManagementCompanies.cs" />
     <Compile Include="ShowFundAccount.cs" />
     <Compile Include="KundStartFönster\Visa kundinfo\ShowTransfers.cs" />
     <Compile Include="SynkStartFönster\Om\ShowSYAFlags.cs" />
@@ -173,10 +188,11 @@
     <Compile Include="Setup\NavigateToSynkStartWindow.cs" />
     <Compile Include="Kassa\CashDeskWithdraw.cs" />
     <Compile Include="KundStartFönster\Affärer\CreateAccount.cs" />
-    <Compile Include="TestCases.cs" />
+    <Compile Include="TestSample.cs" />
+    <Compile Include="TestSuites\SynkStartWindowTestSuite.cs" />
+    <Compile Include="TestSuites\CustomerStartWindowTestSuite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\LoginToSynk.cs" />
-    <Compile Include="TestClass.cs" />
     <Compile Include="Betalningar\VerifyBalance.cs" />
     <Compile Include="Betalningar\CheckBalance.cs" />
     <Compile Include="KundStartFönster\Affärer\ViewSPAXPage.cs" />

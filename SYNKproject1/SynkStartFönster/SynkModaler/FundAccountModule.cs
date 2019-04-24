@@ -29,7 +29,7 @@ namespace SYNKproject1
             RootSession.FindElementByAccessibilityId("frmFondoversikt").FindElementByName("Arkiv").Click();
             RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
             RootSession.FindElementByName("Avbryt").Click();
-        }
+            }
         
     }
 }

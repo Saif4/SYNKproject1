@@ -39,7 +39,7 @@ namespace SYNKproject1
             DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindowHandle);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
-            CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
 
             // Väljer ett konto
             var konto = CustomerFormWindowSession.FindElementByName("Privatkonto???????????????????????????????????");

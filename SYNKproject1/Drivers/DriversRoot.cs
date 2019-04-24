@@ -21,7 +21,7 @@ namespace SYNKproject1
             RootCapabilities.SetCapability("app", "Root");
             RootCapabilities.SetCapability("deviceName", "WindowsPC");
             RootSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), RootCapabilities);
-            RootSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            RootSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(1));
         }
 
 

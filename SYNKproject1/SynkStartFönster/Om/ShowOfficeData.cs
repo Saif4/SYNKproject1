@@ -17,7 +17,7 @@ namespace SYNKproject1
         public void Showofficedata()
         {
             // Verifierar att kontorsuppgifter öppnas
-            RootSession.FindElementByName("Om").Click();
+            RootSession.FindElementByAccessibilityId("Saljstöd").FindElementByName("Om").Click();
             RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
             var officewindow = RootSession.FindElementByAccessibilityId("frmKontor").Displayed;
             RootSession.FindElementByName("OK").Click();

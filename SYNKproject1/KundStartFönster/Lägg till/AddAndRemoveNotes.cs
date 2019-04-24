@@ -45,15 +45,15 @@ namespace SYNKproject1
             // Kollar att notisen är synligt under noteringar 
             CustomerWindowSession.FindElementByName("&3 Noteringar").Click();
             CustomerWindowSession.FindElementByName(valdTypAvNotis).Click();
-            var TextVerifieringen = CustomerWindowSession.FindElementByName("RichEdit Control").Text;
-            Assert.That(TextVerifieringen, Does.Contain("Test notering"));
+           // var TextVerifieringen = CustomerWindowSession.FindElementByName("RichEdit Control").Text;
+           // Assert.That(TextVerifieringen, Does.Contain("Test notering"));
         }
         public void Removenote()
         {
            // Tar bort notisen
            CustomerWindowSession.FindElementByName("Ta bort").Click();
-           CustomerWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
-           CustomerWindowSession.FindElementByName("Yes").Click();
+           CustomerWindowSession.Keyboard.SendKeys(Keys.ArrowUp + Keys.Enter);
+           CustomerWindowSession.FindElementByName("KUNDmodulen").FindElementByName("Yes").Click();
            
         }
       

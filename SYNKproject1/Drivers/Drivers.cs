@@ -20,7 +20,7 @@ namespace SYNKproject1
         public void Driver(string AMWusername, string AMWpassword)
         {
             // En desktop session skapas
-            DesiredCapabilities RootCapabilities = new DesiredCapabilities();
+          /*  DesiredCapabilities RootCapabilities = new DesiredCapabilities();
             RootCapabilities.SetCapability("app", "Root");
             RootCapabilities.SetCapability("deviceName", "WindowsPC");
             RootSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), RootCapabilities);
@@ -42,7 +42,7 @@ namespace SYNKproject1
             catch (Exception)
             {
                 // Om man är inloggad i Centrala systemet så kommer koden ovanpå inte att köras.
-            }
+            }*/
            /* try
             {
                 WindowsElement AMWLoggedIN = RootSession.FindElementByName("Anv.ID:P417JI6, Profil:AMW1, Målsystem:KVALAnv.ID:P417JI6, Profil:AMW1, Målsystem:KVAL");
@@ -79,7 +79,7 @@ namespace SYNKproject1
                 SYNKCapabilities.SetCapability("app", SYNKAppId);
                 SYNKCapabilities.SetCapability("deviceName", "WindowsPC");
                 SYNKSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), SYNKCapabilities);
-                SYNKSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+                SYNKSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
                 var ValAvRedovisningsstället = SYNKSession.FindElementByName("32701010");
                 ValAvRedovisningsstället.Click();
                 SYNKSession.FindElementByName("OK").Click();

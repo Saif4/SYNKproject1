@@ -22,7 +22,7 @@ namespace SYNKproject1
             DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
             customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindow);
             CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
-            CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
 
             // Går in i affärer och väljer att skapa ett nytt fondkonto
             CustomerFormWindowSession.FindElementByName("Affärer").Click();

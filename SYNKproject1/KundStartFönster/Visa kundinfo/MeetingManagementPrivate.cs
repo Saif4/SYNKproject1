@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class MeetingManagementPrivateCustomer : DriversRoot
+    public class MeetingManagementPrivate : DriversRoot
     {
         public WindowsDriver<WindowsElement> CustomerFormWindowSession;
         public void NextMeeting(string datum, string klockan, string notering, string plats)

@@ -17,7 +17,7 @@ namespace SYNKproject1
         public void ShowSyaFlags()
         {
             // Verifierar att syaflagor fönstret är öppet
-            RootSession.FindElementByName("Om").Click();
+            RootSession.FindElementByAccessibilityId("Saljstöd").FindElementByName("Om").Click();
             RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
             RootSession.FindElementByName("User choice").FindElementByName("Yes").Click();
             var SYAFlags = RootSession.FindElementByName("SYAparametrar").Displayed;

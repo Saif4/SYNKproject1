@@ -17,7 +17,7 @@ namespace SYNKproject1
         public void ShowcashdeskData()
         {
             // Verifierar att kassauppgifter öppnas
-            RootSession.FindElementByName("Om").Click();
+            RootSession.FindElementByAccessibilityId("Saljstöd").FindElementByName("Om").Click();
             RootSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.ArrowDown + Keys.ArrowDown + Keys.Enter);
             var officewindow = RootSession.FindElementByAccessibilityId("frmBranch").Displayed;
             RootSession.FindElementByName("OK").Click();
