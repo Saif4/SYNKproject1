@@ -12,7 +12,7 @@ using TestContext = NUnit.Framework.TestContext;
 
 namespace SYNKproject1
 {
-    public class CustomerStartWindowTestSuite
+    public class CustomerStartWindow
     {
         [SetUpFixture]
         public class AMWLogin
@@ -25,7 +25,6 @@ namespace SYNKproject1
             }
         }
         [TestFixture]
-       // [Order(5)] last?
         public class DepositAndWithDrawTests
         {
             [SetUp]
@@ -249,28 +248,29 @@ namespace SYNKproject1
             {
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver("P417JI6", "evry123");
-                
+                LoginToSynk synkStartWindowLogin = new LoginToSynk();
+                synkStartWindowLogin.Synklogin("197611040010");
             }
             [Test]
             [Order(1)]
             public void Login()
             {
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
-                synkStartWindowLogin.Synklogin("195306300368");
+                synkStartWindowLogin.Synklogin("197611040010");
             }
             [Test]
             [Order(2)]
             public void BuyFund()
             {
                 BuyFund buyFund = new BuyFund();
-                buyFund.Buyfund("104", "Privatkonto");
+                buyFund.Buyfund("100", "Privatkonto");
             }
             [Test]
             [Order(3)]
             public void SellFund()
             {
                 SellFund sellFund = new SellFund();
-                sellFund.Sellfund("102", "Privatkonto");
+                sellFund.Sellfund("104", "Privatkonto");
             }
             [Test]
             [Order(4)]
@@ -291,26 +291,28 @@ namespace SYNKproject1
             public void ChangeFund()
             {
                 ChangeFund changeFund = new ChangeFund();
-                changeFund.Changefund("9 445 602-7 - Investeringssparkonto", "Swedbank Robur Prem. Offensiv", "109");
+                changeFund.Changefund("9 445 602-7 - Investeringssparkonto", "Swedbank Robur Prem. Offensiv", "106");
             }
             [Test]
-            [Order(7)]
+            [Order(9)]
             public void Cart()
             {
                 Cart cart = new Cart();
                 cart.Cartview();
             }
             [Test]
+            [Order(7)]
             public void BuyFundOnDifferentDate()
             {
                 BuyFundOnDifferentDate buyFundOnDifferentDate = new BuyFundOnDifferentDate();
-                buyFundOnDifferentDate.BuyFund("113", "Privatkonto", "20190401");
+                buyFundOnDifferentDate.BuyFund("109", "Privatkonto", "20190401");
             }
             [Test]
+            [Order(8)]
             public void SellFundOnDifferentDate()
             {
                 SellFundOnDifferentDate sellFundOnDifferentDate = new SellFundOnDifferentDate();
-                sellFundOnDifferentDate.Sellfund("111", "Privatkonto", "20190401");
+                sellFundOnDifferentDate.Sellfund("107", "Privatkonto", "20190401");
             }
             [TearDown]
             public void TearDownIfTestFails()
@@ -422,7 +424,8 @@ namespace SYNKproject1
             {
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver("P417JI6", "evry123");
-                
+                LoginToSynk synkStartWindowLogin = new LoginToSynk();
+                synkStartWindowLogin.Synklogin("196308120093");
             }
             [Test]
             [Order(1)]
@@ -500,7 +503,8 @@ namespace SYNKproject1
             {
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver("P417JI6", "evry123");
-               
+                LoginToSynk synkStartWindowLogin = new LoginToSynk();
+                synkStartWindowLogin.Synklogin("195306300368");
             }
             [Test]
             [Order(1)]

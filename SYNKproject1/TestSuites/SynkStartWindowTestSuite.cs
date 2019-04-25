@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class SynkStartWindowTestSuite
+    public class SynkStartWindow
     {
         [SetUpFixture]
         public class AMWLogin
