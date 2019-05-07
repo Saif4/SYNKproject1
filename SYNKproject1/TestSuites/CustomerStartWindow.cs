@@ -24,223 +24,10 @@ namespace SYNKproject1
                 aMW.Driver("P417JI6", "evry123");
             }
         }
+       
+       
+       
         [TestFixture]
-        public class DepositAndWithDrawTests
-        {
-            [SetUp]
-            public void InitialDriver()
-            {
-                Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
-                
-            }
-            [Test]
-            [Order(1)]
-            public void OpenCashDesk()
-            {
-                OpenCashDesk opendesk = new OpenCashDesk();
-                opendesk.CashDesk();
-            }
-            [Test]
-            public void Deposit()
-            {
-
-                CashDeskDeposit deposit = new CashDeskDeposit();
-                deposit.Deposit("19530630-0368", "Privatkonto", "1500");
-            }
-            [Test]
-            public void DepositAboveLimit()
-            {
-                CashDeskDepositAboveLimit cashDeskDepositAboveLimit = new CashDeskDepositAboveLimit();
-                cashDeskDepositAboveLimit.DepositAboveLimit("19530630-0368", "Privatkonto", "10000");
-            }
-            [Test]
-            public void MultipleDeposits()
-            {
-                MultipleDeposits multipleDeposits = new MultipleDeposits();
-                multipleDeposits.MultipleDepoit("19530630-0368", "14 9020 274 717-6", "50", "8327-9, 904 368 271-6", "50", "Privatkonto");
-            }
-            [Test]
-            public void Withdraw()
-            {
-                CashDeskWithdraw withdraw = new CashDeskWithdraw();
-                withdraw.Withdraw("19530630-0368", "Privatkonto", "500");
-            }
-            [Test]
-            public void WithdrawAboveLimit()
-            {
-                CashDeskWithdrawAboveLimit cashDeskWithdrawAboveLimit = new CashDeskWithdrawAboveLimit();
-                cashDeskWithdrawAboveLimit.WithdrawAboveLimit("19530630-0368", "Privatkonto", "10000");
-            }
-            [TearDown]
-            public void TearDownIfTestFails()
-            {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
-                {
-                    DriverQuit teardown = new DriverQuit();
-                    teardown.Teardown();
-                    Thread.Sleep(1000);
-                }
-            }
-            [OneTimeTearDown]
-            public void TearDown()
-            {
-                CloseCashDesk closedesk = new CloseCashDesk();
-                closedesk.ClosecashDesk();
-                DriverQuit teardown = new DriverQuit();
-                teardown.Teardown();
-                Thread.Sleep(1000);
-            }
-
-        }
-        [TestFixture] 
-        //[Ignore("Ignore a fixture")]
-        public class TransferTests
-        {
-            [SetUp]
-            public void InitialDriver()
-            {
-                Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
-                NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
-                navigate.InitialSYNKStartWindow();
-               
-            }
-            [Test]
-            [Order(1)]
-            public void OpenCashDesk()
-            {
-                OpenCashDesk opendesk = new OpenCashDesk();
-                opendesk.CashDesk();
-            }
-            [Test]
-            [Order(2)]
-            public void TransferBetweenTheSameBank()
-            {
-                CashDeskTransfer cashDeskTransfer = new CashDeskTransfer();
-                cashDeskTransfer.OpenCashDeskAndTransfer("19530630-0368", "500");
-            }
-            [Test]
-            [Order(3)]
-            public void TransferBackBetweenTheSameBank()
-            {
-                CashDeskTransferBack cashDeskTransferBack = new CashDeskTransferBack();
-                cashDeskTransferBack.OpenCashDeskAndTransferBack("19530630-0368", "500");
-            }
-            [Test]
-            [Order(4)]
-            public void TransferWithCustomerIdentification()
-            {
-                CashDeskTransferCustomerIdentification cashDeskTransferCustomerIdentification = new CashDeskTransferCustomerIdentification();
-                cashDeskTransferCustomerIdentification.OpenCashDeskAndTransferWithCustomerIdentification("19530630-0368", "10000");
-            }
-            [Test]
-            [Order(5)]
-            public void TransferToDifferentBank()
-            {
-                CashDeskTransferDifferentBank cashDeskTransfer = new CashDeskTransferDifferentBank();
-                cashDeskTransfer.TransferToDifferentBank("195306300368", "14 9020 274 717-6", "500");
-            }
-            [Test]
-            [Order(6)]
-            public void TransferWithinSameBankWithVerification()
-            {
-                CashDeskTransfer cashDeskTransfer = new CashDeskTransfer();
-                cashDeskTransfer.OpenCashDeskAndTransfer("19530630-0368", "500");
-
-            }
-            [TearDown]
-            public void TearDownIfTestFails()
-            {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
-                {
-                    DriverQuit teardown = new DriverQuit();
-                    teardown.Teardown();
-                    Thread.Sleep(1000);
-                }
-            }
-            [OneTimeTearDown]
-            public void TearDown()
-            {
-                CloseCashDesk closedesk = new CloseCashDesk();
-                closedesk.ClosecashDesk();
-                DriverQuit teardown = new DriverQuit();
-                teardown.Teardown();
-                Thread.Sleep(1000);
-            }
-        }
-        [TestFixture]
-        public class PaymentsTest
-        {
-            [SetUp]
-            public void InitialDriver()
-            {
-                Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
-                
-            }
-            [Test]
-            [Order(1)]
-            public void OpenCashDesk()
-            {
-                OpenCashDesk opendesk = new OpenCashDesk();
-                opendesk.CashDesk();
-            }
-            [Test]
-            [Order(2)]
-            public void Login()
-            {
-                LoginToSynk synkStartWindowLogin = new LoginToSynk();
-                synkStartWindowLogin.Synklogin("195306300368");
-            }
-            [Test]
-            public void BgPayment()
-            {
-                CheckBalance checkBalance = new CheckBalance();
-                checkBalance.OpenAccountAndVerifyBalance();
-                BGandPGpayment payment = new BGandPGpayment();
-                payment.BgAndPGpayment("195306300368", "100", "5175-4158", "7904130361");
-                VerifyBalance verifyBalance = new VerifyBalance();
-                verifyBalance.OpenAccountAndVerifyBalance();
-            }
-            [Test]
-            public void PaymentVerifications()
-            {
-
-                PaymentVerifications payment = new PaymentVerifications();
-                payment.BgAndPGpayment("195306300368", "100", "5175-4158", "5175-4159", "7904130361", "1234567890", "12345678912345679");
-            }
-            [Test]
-            public void ChangePayment()
-            {
-
-
-                ChangePayment payment = new ChangePayment();
-                payment.BgAndPGpayment("195306300368", "100", "5175-4158", "7904130361");
-            }
-            [TearDown]
-            public void TearDownIfTestFails()
-            {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
-                {
-                    DriverQuit teardown = new DriverQuit();
-                    teardown.Teardown();
-                    Thread.Sleep(1000);
-                }
-            }
-            [OneTimeTearDown]
-            public void TearDown()
-            {
-                CloseCashDesk closedesk = new CloseCashDesk();
-                closedesk.ClosecashDesk();
-                DriverQuit teardown = new DriverQuit();
-                teardown.Teardown();
-                Thread.Sleep(1000);
-            }
-
-        }
-        [TestFixture]
-        //[Ignore("Ignore a fixture")]
         public class Funds
         {
             [SetUp]
@@ -249,14 +36,14 @@ namespace SYNKproject1
                 Drivers SynkStartup = new Drivers();
                 SynkStartup.Driver("P417JI6", "evry123");
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
-                synkStartWindowLogin.Synklogin("197611040010");
+                synkStartWindowLogin.Synklogin("195306300368"); // 197611040010
             }
             [Test]
             [Order(1)]
             public void Login()
             {
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
-                synkStartWindowLogin.Synklogin("197611040010");
+                synkStartWindowLogin.Synklogin("195306300368");
             }
             [Test]
             [Order(2)]
@@ -267,48 +54,64 @@ namespace SYNKproject1
             }
             [Test]
             [Order(3)]
+            public void BuyFundISK()
+            {
+                BuyFundISK buyFundISK = new BuyFundISK();
+                buyFundISK.BuyfundISK("9 445 602-7 - Investeringssparkonto","100", "Privatkonto");
+            }
+            
+            [Test]
+            [Order(4)]
             public void SellFund()
             {
+               
                 SellFund sellFund = new SellFund();
                 sellFund.Sellfund("104", "Privatkonto");
             }
             [Test]
-            [Order(4)]
+            [Order(5)]
+            public void SellFundISK()
+            {
+                SellFundISK sellFundISK = new SellFundISK();
+                sellFundISK.SellfundISK("9 445 602-7 - Investeringssparkonto", "104", "Privatkonto");
+            }
+            [Test]
+            [Order(6)]
             public void BuyShare()
             {
                 BuyShare buyShare = new BuyShare();
                 buyShare.Buyshare("327327-02453-2: Värdepapperstjänst Aktiv ISK", "ERICSSON B", "2");
             }
             [Test]
-            [Order(5)]
+            [Order(7)]
             public void SellShare()
             {
                 SellShare sellShare = new SellShare();
                 sellShare.Sellshare("327327-02453-2: Värdepapperstjänst Aktiv ISK", "ERICSSON B", "1");
             }
             [Test]
-            [Order(6)]
+            [Order(8)]
             public void ChangeFund()
             {
                 ChangeFund changeFund = new ChangeFund();
                 changeFund.Changefund("9 445 602-7 - Investeringssparkonto", "Swedbank Robur Prem. Offensiv", "106");
             }
             [Test]
-            [Order(9)]
+            [Order(11)]
             public void Cart()
             {
                 Cart cart = new Cart();
                 cart.Cartview();
             }
             [Test]
-            [Order(7)]
+            [Order(9)]
             public void BuyFundOnDifferentDate()
             {
                 BuyFundOnDifferentDate buyFundOnDifferentDate = new BuyFundOnDifferentDate();
                 buyFundOnDifferentDate.BuyFund("109", "Privatkonto", "20190401");
             }
             [Test]
-            [Order(8)]
+            [Order(10)]
             public void SellFundOnDifferentDate()
             {
                 SellFundOnDifferentDate sellFundOnDifferentDate = new SellFundOnDifferentDate();

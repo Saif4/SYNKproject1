@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class SellFundOnDifferentDate : DriversRoot
+    public class SellFundISK : DriversRoot
     {
         public WindowsDriver<WindowsElement> CustomerFormWindowSession;
         public WindowsDriver<WindowsElement> VarukorgenFormWindowSession;
 
-        public SellFundOnDifferentDate()
+        public SellFundISK()
         {
             PageFactory.InitElements(DriversRoot.RootSession, this);
         }
 
-        public void Sellfund(string belopp, string konto, string datum)
+        public void SellfundISK(string fondkonto, string belopp, string konto)
         {
             // Hittar kund modalen och länkar till den
             var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
@@ -37,14 +37,21 @@ namespace SYNKproject1
             WindowsElement fund = CustomerFormWindowSession.FindElementByName("Fonder");
             CustomerFormWindowSession.Mouse.MouseMove(fund.Coordinates);
             CustomerFormWindowSession.Mouse.Click(null);
-            WindowsElement buy = CustomerFormWindowSession.FindElementByName("Sälj på tidigare datum");
+            WindowsElement buy = CustomerFormWindowSession.FindElementByName("Sälj...");
             CustomerFormWindowSession.Mouse.MouseMove(buy.Coordinates);
             CustomerFormWindowSession.Mouse.Click(null);
 
-            // Väljer ett konto som har fonder att sälja 
+            CustomerFormWindowSession.FindElementByName("Open").Click();
+            WindowsElement fundaccount = CustomerFormWindowSession.FindElementByName(fondkonto);
+            CustomerFormWindowSession.Mouse.MouseMove(fundaccount.Coordinates);
+            CustomerFormWindowSession.Mouse.Click(null);
+
+
+
+           /* // Väljer ett konto som har fonder att sälja 
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdLiquidAccount").Click();
             CustomerFormWindowSession.FindElementByName(konto).Click();
-            CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();
+            CustomerFormWindowSession.FindElementByAccessibilityId("cmdOK").Click();*/
 
             // Väljer en fond ska säljas
             CustomerFormWindowSession.FindElementByAccessibilityId("ListViewItem-0").Click();
@@ -54,10 +61,8 @@ namespace SYNKproject1
 
             // Väljer beloppet som ska säljas och slutföra processen 
             CustomerFormWindowSession.FindElementByAccessibilityId("txtAmountSell").SendKeys(belopp);
-            CustomerFormWindowSession.FindElementByName("Tidigare säljdatum:").SendKeys(datum);
             CustomerFormWindowSession.FindElementByAccessibilityId("optRadgNej").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdSell").Click();
-
 
             var SellWindow = CustomerFormWindowSession.FindElementByAccessibilityId("frmSell").Enabled;
 
@@ -72,6 +77,8 @@ namespace SYNKproject1
             {
                 Assert.Fail();
             }
+
+
         }
     }
 }

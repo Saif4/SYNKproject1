@@ -59,8 +59,22 @@ namespace SYNKproject1
             CustomerFormWindowSession.FindElementByAccessibilityId("txtAmountSell").SendKeys(belopp);
             CustomerFormWindowSession.FindElementByAccessibilityId("optRadgNej").Click();
             CustomerFormWindowSession.FindElementByAccessibilityId("cmdSell").Click();
-            CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
+           
+            var SellWindow = CustomerFormWindowSession.FindElementByAccessibilityId("frmSell").Enabled;
+            
+        
 
+            if (SellWindow == true)
+            {
+                CustomerFormWindowSession.FindElementByAccessibilityId("cmdClose").Click();
+
+            }
+            else
+            {
+                Assert.Fail();
+            }
+            
+           
         }
     }
 }

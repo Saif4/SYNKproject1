@@ -19,9 +19,13 @@ namespace SYNKproject1
             LoginToSynk synkStartWindowLogin = new LoginToSynk();
             synkStartWindowLogin.Synklogin("197611040010");
 
-            AddAndRemoveNotes addAndRemoveNotes = new AddAndRemoveNotes();
-            addAndRemoveNotes.AddNote();
-            addAndRemoveNotes.Removenote();
+            AccountSettlement accountSettlement = new AccountSettlement();
+            accountSettlement.SelectAccount("Privatkonto???????????????????????????????????");
+            accountSettlement.AddSettlement("310 Disponeras av kontohavaren eller god man                                                                  ", "199704290098");
+            accountSettlement.ChangeSettlement("199702200016");
+            accountSettlement.DeleteSettlement();
+
+            
             // Advise advise = new Advise();
             //advise.OpenAdvise();
         }

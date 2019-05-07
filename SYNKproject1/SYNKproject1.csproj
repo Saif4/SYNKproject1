@@ -115,7 +115,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountSettlement.cs" />
+    <Compile Include="TestSuites\AccountView.cs" />
     <Compile Include="Advise.cs" />
+    <Compile Include="TestSuites\CashDesk.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\BuyFundISK.cs" />
     <Compile Include="Drivers\AMW.cs" />
     <Compile Include="KundStartFönster\Visa kundinfo\CustomerProfile.cs" />
     <Compile Include="KundStartFönster\Visa kundinfo\CustomerRelation.cs" />
@@ -130,6 +134,7 @@
     <Compile Include="KundStartFönster\Visa kundinfo\CustomerDebit.cs" />
     <Compile Include="KundStartFönster\Affärer\CreateCompanyAccount.cs" />
     <Compile Include="KundStartFönster\Visa kundinfo\PricePictureCompany.cs" />
+    <Compile Include="KundStartFönster\Affärer\Fonder\SellFundISK.cs" />
     <Compile Include="TestCases.cs" />
     <Compile Include="KundStartFönster\Affärer\Fonder\BuyFundOnDifferentDate.cs" />
     <Compile Include="KundStartFönster\Ändra\ChangeCustomerInformationView.cs" />
@@ -189,8 +194,8 @@
     <Compile Include="Kassa\CashDeskWithdraw.cs" />
     <Compile Include="KundStartFönster\Affärer\CreateAccount.cs" />
     <Compile Include="TestSample.cs" />
-    <Compile Include="TestSuites\SynkStartWindowTestSuite.cs" />
-    <Compile Include="TestSuites\CustomerStartWindowTestSuite.cs" />
+    <Compile Include="TestSuites\SynkStartWindow.cs" />
+    <Compile Include="TestSuites\CustomerStartWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\LoginToSynk.cs" />
     <Compile Include="Betalningar\VerifyBalance.cs" />

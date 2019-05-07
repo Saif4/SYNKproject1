@@ -24,8 +24,34 @@ namespace SYNKproject1
             CashDeskWindowSession.FindElementByName("Verkställ").Click();
             CashDeskWindowSession.FindElementByName("Verkställ").Click();
 
-            CashDeskWindowSession.FindElementByName("Arkiv").Click();
-            CashDeskWindowSession.FindElementByName("Arkiv").SendKeys("A");
+            try
+            {
+                var message = CashDeskWindowSession.FindElementByAccessibilityId("txtMessage").GetAttribute("Value.Value");
+
+                if (message.Contains("Kontantlös kassa kan bara stängas om utgående kassabehållning och kassadifferens är noll."))
+                {
+                    CashDeskWindowSession.FindElementByName("Boka diff...").Click();
+                    CashDeskWindowSession.FindElementByName("Idnr:").SendKeys("1");
+                    CashDeskWindowSession.FindElementByAccessibilityId("frmBook").FindElementByName("Verkställ").Click();
+                    CashDeskWindowSession.FindElementByName("Verkställ").Click();
+                    CashDeskWindowSession.FindElementByName("Arkiv").Click();
+                    CashDeskWindowSession.FindElementByName("Arkiv").SendKeys("A");
+                }
+                else
+                {
+                   
+                }
+
+            }
+            catch (Exception)
+            {
+                CashDeskWindowSession.FindElementByName("Arkiv").Click();
+                CashDeskWindowSession.FindElementByName("Arkiv").SendKeys("A");
+            }
+               
+
+           
+           
 
         }
     }
