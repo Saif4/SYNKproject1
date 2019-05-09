@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace SYNKproject1
-{
+{/*
     public class CashDesk
     {
         [SetUpFixture]
@@ -234,5 +234,5 @@ namespace SYNKproject1
             }
 
         }
-    }
+    }*/
 }
