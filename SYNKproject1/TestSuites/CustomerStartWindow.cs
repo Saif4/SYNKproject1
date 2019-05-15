@@ -34,9 +34,9 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
-                synkStartWindowLogin.Synklogin("195306300368"); // 197611040010
+                synkStartWindowLogin.Synklogin("195306300368"); // 197611040010  192404180545
             }
             [Test]
             [Order(1)]
@@ -143,7 +143,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
                 
             }
             [Test]
@@ -185,7 +185,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
                
             }
             [Test]
@@ -226,7 +226,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
                 synkStartWindowLogin.Synklogin("196308120093");
             }
@@ -305,7 +305,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
                 synkStartWindowLogin.Synklogin("195306300368");
             }

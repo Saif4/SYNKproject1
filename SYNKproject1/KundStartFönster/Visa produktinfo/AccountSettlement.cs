@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -11,35 +12,13 @@ using System.Threading.Tasks;
 
 namespace SYNKproject1
 {
-    public class AccountSettlement : DriversRoot
+    public class AccountSettlement : AccountSelection
     {
-        public WindowsDriver<WindowsElement> CustomerFormWindowSession;
-        public WindowsDriver<WindowsElement> AccountWindowSession;
-
-        public void SelectAccount(string konto)
+        // new public WindowsDriver<WindowsElement> CustomerFormWindowSession;
+        //new public WindowsDriver<WindowsElement> AccountWindowSession;
+        public AccountSettlement()
         {
-            // Hittar kund modalen och länkar till den
-            var customerFormWindow = RootSession.FindElementByAccessibilityId("frmCustView").GetAttribute("NativeWindowHandle");
-            customerFormWindow = (int.Parse(customerFormWindow)).ToString("x"); // Convert to Hex
-
-            DesiredCapabilities customerFormAppCapabilities = new DesiredCapabilities();
-            customerFormAppCapabilities.SetCapability("appTopLevelWindow", customerFormWindow);
-            CustomerFormWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), customerFormAppCapabilities);
-            CustomerFormWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-
-            // Går in på ett konto
-            CustomerFormWindowSession.FindElementByName(konto).Click();
-            CustomerFormWindowSession.FindElementByName("Visa produktinfo").Click();
-            CustomerFormWindowSession.Keyboard.SendKeys(Keys.ArrowDown + Keys.Enter);
-
-            // Hittar konto modalen och länkar till den
-            var accountWindowState = RootSession.FindElementByAccessibilityId("frmKonto").GetAttribute("NativeWindowHandle");
-            accountWindowState = (int.Parse(accountWindowState)).ToString("x");
-
-            DesiredCapabilities accountAppCapabilities = new DesiredCapabilities();
-            accountAppCapabilities.SetCapability("appTopLevelWindow", accountWindowState);
-            AccountWindowSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), accountAppCapabilities);
-            AccountWindowSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+        PageFactory.InitElements(AccountSelection.AccountWindowSession , this);
         }
         public void AddSettlement(string settlement, string kund)
         { 

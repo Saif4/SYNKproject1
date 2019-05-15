@@ -29,7 +29,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
             }
             [Test] //Startsidan
             public void CustomerModule()
@@ -89,7 +89,7 @@ namespace SYNKproject1
             public void Setup()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
             }
             [Test] //Arkiv
             [Order(5)]
@@ -187,7 +187,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
             }
             [Test] //Verktyg
             public void CustomerDataView()

@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace SYNKproject1
-{/*
+{
     public class CashDesk
     {
         [SetUpFixture]
@@ -28,7 +28,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
 
             }
             [Test]
@@ -98,7 +98,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
                 NavigateToSynkStartWindow navigate = new NavigateToSynkStartWindow();
                 navigate.InitialSYNKStartWindow();
 
@@ -173,7 +173,7 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
 
             }
             [Test]
@@ -234,5 +234,5 @@ namespace SYNKproject1
             }
 
         }
-    }*/
+    }
 }

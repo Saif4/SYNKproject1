@@ -116,7 +116,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountSettlement.cs" />
+    <Compile Include="KundStartFönster\Visa produktinfo\AccountSelection.cs" />
+    <Compile Include="KundStartFönster\Visa produktinfo\AccountHolder.cs" />
+    <Compile Include="KundStartFönster\Visa produktinfo\AccountSettlement.cs" />
     <Compile Include="TestSuites\AccountView.cs" />
     <Compile Include="Advise.cs" />
     <Compile Include="TestSuites\CashDesk.cs" />
@@ -227,7 +229,9 @@
   <ItemGroup>
     <Folder Include="KundStartFönster\Arkiv\" />
     <Folder Include="KundStartFönster\Ta bort\" />
-    <Folder Include="KundStartFönster\Visa produktinfo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

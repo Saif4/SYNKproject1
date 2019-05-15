@@ -28,18 +28,31 @@ namespace SYNKproject1
             public void InitialDriver()
             {
                 Drivers SynkStartup = new Drivers();
-                SynkStartup.Driver("P417JI6", "evry123");
+                SynkStartup.Driver();
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
                 synkStartWindowLogin.Synklogin("197611040010");
             }
             [Test]
-            public void Settlements()
+            [Order(1)]
+            public void AccountSelection()
+            {
+                AccountSelection accountSelection = new AccountSelection();
+                accountSelection.SelectAccount("Privatkonto???????????????????????????????????");
+            }
+            [Test]
+            public void AccountSettlements()
             {
                 AccountSettlement accountSettlement = new AccountSettlement();
-                accountSettlement.SelectAccount("Privatkonto???????????????????????????????????");
                 accountSettlement.AddSettlement("310 Disponeras av kontohavaren eller god man                                                                  ", "199704290098");
                 accountSettlement.ChangeSettlement("199702200016");
                 accountSettlement.DeleteSettlement();
+            }
+            [Test]
+            public void AccountHolders()
+            {
+                AccountHolder accountHolder = new AccountHolder();
+                accountHolder.AddAcountHolder("194207030018");
+                accountHolder.DeleteHolder();
             }
             [TearDown]
             public void TearDownIfTestFails()

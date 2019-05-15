@@ -17,7 +17,7 @@ namespace SYNKproject1
 
 
 
-        public void Driver(string AMWusername, string AMWpassword)
+        public void Driver()
         {
             // En desktop session skapas
           /*  DesiredCapabilities RootCapabilities = new DesiredCapabilities();
