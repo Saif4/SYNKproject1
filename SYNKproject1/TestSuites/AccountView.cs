@@ -31,11 +31,6 @@ namespace SYNKproject1
                 SynkStartup.Driver();
                 LoginToSynk synkStartWindowLogin = new LoginToSynk();
                 synkStartWindowLogin.Synklogin("197611040010");
-            }
-            [Test]
-            [Order(1)]
-            public void AccountSelection()
-            {
                 AccountSelection accountSelection = new AccountSelection();
                 accountSelection.SelectAccount("Privatkonto???????????????????????????????????");
             }
