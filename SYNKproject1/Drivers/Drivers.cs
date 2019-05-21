@@ -80,6 +80,10 @@ namespace SYNKproject1
                 SYNKCapabilities.SetCapability("deviceName", "WindowsPC");
                 SYNKSession = new WindowsDriver<WindowsElement>(new Uri(windowsApplicationDriverUrl), SYNKCapabilities);
                 SYNKSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
+                if (SYNKSession.FindElementByName("OBS! Du är nog inte uppkopplad mot ditt hemmakontor och saknar Q-disk").Displayed)
+                {
+                    SYNKSession.FindElementByName("Yes").Click();
+                }
                 var ValAvRedovisningsstället = SYNKSession.FindElementByName("32701010");
                 ValAvRedovisningsstället.Click();
                 SYNKSession.FindElementByName("OK").Click();
